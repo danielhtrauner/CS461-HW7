@@ -1,4 +1,3 @@
-CS461-HW7
-=========
-
-Ray Tracing v2.0
+#CS461 HW7
+#### Will Potter and Dan Trauner
+[wspotter[at]midd](mailto:wspotter@middlebury.edu) and [dtrauner[at]midd](mailto:dtrauner@middlebury.edu)
