@@ -1,5 +1,8 @@
 package ray.surface;
 
+import javax.vecmath.Matrix3d;
+
+
 import ray.IntersectionRecord;
 import ray.Ray;
 import ray.math.Point3;
@@ -54,11 +57,68 @@ public class Triangle extends Surface {
      */
     public boolean intersect(IntersectionRecord outRecord, Ray rayIn) {
 
-        // TODO: fill in this function.
+    	Vector3 d = new Vector3(rayIn.direction);
+    	Point3 e = new Point3(rayIn.origin);
+    	Vector3 normal = new Vector3(norm);
+        Point3 a = owner.getVertex(index[0]);
+        Point3 b = owner.getVertex(index[1]);
+        Point3 c = owner.getVertex(index[2]);
+    	Matrix3d A = new Matrix3d();
+    	A.m00 = a.x - b.x;
+    	A.m01 = a.y - b.y;
+    	A.m02 = a.z - b.z;
+    	A.m10 = a.x - c.x;
+    	A.m11 = a.y - c.y;
+    	A.m12 = a.z - c.z;
+    	A.m20 = d.x;
+    	A.m21 = d.y;
+    	A.m22 = d.z;
+    	double det=A.determinant();
+    	
+    	Matrix3d betaMatrix = new Matrix3d();
+    	betaMatrix.m00 = a.x-e.x;
+    	betaMatrix.m01 = a.y-e.y;
+    	betaMatrix.m02 = a.z-e.z;
+    	betaMatrix.m10 = a.x-c.x;
+    	betaMatrix.m11 = a.y-c.y;
+    	betaMatrix.m12 = a.z-c.z;
+    	betaMatrix.m20 = d.x;
+    	betaMatrix.m21 = d.y;
+    	betaMatrix.m22 = d.z;
+    	double beta = betaMatrix.determinant()/det;
+    	
+    	Matrix3d gammaMatrix = new Matrix3d();
+    	gammaMatrix.m00 = a.x-b.x;
+    	gammaMatrix.m01 = a.y-b.y;
+    	gammaMatrix.m02 = a.z-b.z;
+    	gammaMatrix.m10 = a.x-e.x;
+    	gammaMatrix.m11 = a.y-e.y;
+    	gammaMatrix.m12 = a.z-e.z;    	
+    	gammaMatrix.m20 = d.x;
+    	gammaMatrix.m21 = d.y;
+    	gammaMatrix.m22 = d.z;
+    	double gamma = gammaMatrix.determinant()/det;
 
-        // use strategy from book, pp. 78-79
+    	Matrix3d tMatrix = new Matrix3d();
+    	tMatrix.m00 = a.x-b.x;
+    	tMatrix.m01 = a.y-b.y;
+    	tMatrix.m02 = a.z-b.z;
+    	tMatrix.m10 = a.x-c.x;
+    	tMatrix.m11 = a.y-c.y;
+    	tMatrix.m12 = a.z-c.z;    	
+    	tMatrix.m20 = a.z-e.z;
+    	tMatrix.m21 = a.z-e.z;
+    	tMatrix.m22 = a.z-e.z;
+    	double t = tMatrix.determinant()/det;
 
-        return false;
+    	
+    	if(t<rayIn.start||t>rayIn.end) 
+    		return false;
+    	if(gamma<0||gamma>1) 
+    		return false;
+    	if(beta<0||beta>1-gamma)
+    		return false;
+    	return true;
     }
 
     public String toString() {
