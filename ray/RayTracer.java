@@ -117,8 +117,8 @@ public class RayTracer {
 		int ns = scene.getSamples();
 		int nx = width+1;
 		int ny = height+1;
-		int x = 0;
-		int y = 0;
+		double x = 0;
+		double y = 0;
 
 		for (int iy = 0; iy < ny-1; iy++) {
 			for (int ix = 0; ix < nx-1; ix++) {
@@ -127,11 +127,8 @@ public class RayTracer {
 				
 				for (int dx = 0; dx < ns; dx++) {
 					for (int dy = 0; dy < ns; dy++) {
-						x = (int)((ix + (dx + 0.5) / ns) / nx);
-						y = (int)((iy + (dy + 0.5) / ns) / ny);
-						
-						// old way
-						// cam.getRay(ray, (x + 0.5)/(double)width, (y + 0.5)/(double)height);	
+						x = (ix + (dx + 0.5) / ns) / nx;
+						y = (iy + (dy + 0.5) / ns) / ny;
 						
 						cam.getRay(ray, x, y);
 
@@ -139,11 +136,14 @@ public class RayTracer {
 
 						sum.add(rayColor);
 					}
-					pixelColor.set(sum);
-					pixelColor.gammaCorrect(2.2);
-					pixelColor.clamp(0, 1);
-					image.setPixelColor(pixelColor, x, y);
 				}
+				sum.scale(1/Math.pow(ns,2));
+				pixelColor.set(sum);
+				
+				pixelColor.gammaCorrect(2.2);
+				pixelColor.clamp(0, 1);
+				
+				image.setPixelColor(pixelColor, ix, iy);
 			}
 				
 			counter++;
