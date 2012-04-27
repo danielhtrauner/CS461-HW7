@@ -188,7 +188,13 @@ public class Mesh extends Surface{
     }
 
         
-    public boolean intersect(IntersectionRecord outRecord, Ray rayIn) { return false; }
+    public boolean intersect(IntersectionRecord outRecord, Ray rayIn) { 
+    	for (int i=0; i<triangles.length; i++) {
+    		if (triangles[i].intersect(outRecord, rayIn))
+    			return true;
+    	}
+    	return false;
+    }
         
     // instead of adding the mesh, add the individual triangles to scene
     public void addTo(ArrayList<Surface> surfaces) {

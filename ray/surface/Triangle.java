@@ -1,8 +1,5 @@
 package ray.surface;
 
-import javax.vecmath.Matrix3d;
-
-
 import ray.IntersectionRecord;
 import ray.Ray;
 import ray.math.Point3;
@@ -40,7 +37,7 @@ public class Triangle extends Surface {
             norm = new Vector3();
             norm.cross(e0, e1);
             norm.normalize();
-        }
+        } 
                                 
         this.setShader(material);
     }
@@ -58,67 +55,81 @@ public class Triangle extends Surface {
     public boolean intersect(IntersectionRecord outRecord, Ray rayIn) {
 
     	Vector3 d = new Vector3(rayIn.direction);
-    	Point3 e = new Point3(rayIn.origin);
-    	Vector3 normal = new Vector3(norm);
+    	Point3 p = new Point3(rayIn.origin);
+    	Vector3 n = new Vector3();
+    	
+    	if (owner.existsNormals()) {
+            Vector3 na = owner.getNormal(index[0]);
+            Vector3 nb = owner.getNormal(index[1]);
+            Vector3 nc = owner.getNormal(index[2]);
+
+            Vector3 total = new Vector3(na);
+            total.add(nb);
+            total.add(nc);
+            total.scale(1/3);
+            n.set(total);
+            
+    	} else
+    		n.set(norm);
+    	
         Point3 a = owner.getVertex(index[0]);
         Point3 b = owner.getVertex(index[1]);
         Point3 c = owner.getVertex(index[2]);
-    	Matrix3d A = new Matrix3d();
-    	A.m00 = a.x - b.x;
-    	A.m01 = a.y - b.y;
-    	A.m02 = a.z - b.z;
-    	A.m10 = a.x - c.x;
-    	A.m11 = a.y - c.y;
-    	A.m12 = a.z - c.z;
-    	A.m20 = d.x;
-    	A.m21 = d.y;
-    	A.m22 = d.z;
-    	double det=A.determinant();
-    	
-    	Matrix3d betaMatrix = new Matrix3d();
-    	betaMatrix.m00 = a.x-e.x;
-    	betaMatrix.m01 = a.y-e.y;
-    	betaMatrix.m02 = a.z-e.z;
-    	betaMatrix.m10 = a.x-c.x;
-    	betaMatrix.m11 = a.y-c.y;
-    	betaMatrix.m12 = a.z-c.z;
-    	betaMatrix.m20 = d.x;
-    	betaMatrix.m21 = d.y;
-    	betaMatrix.m22 = d.z;
-    	double beta = betaMatrix.determinant()/det;
-    	
-    	Matrix3d gammaMatrix = new Matrix3d();
-    	gammaMatrix.m00 = a.x-b.x;
-    	gammaMatrix.m01 = a.y-b.y;
-    	gammaMatrix.m02 = a.z-b.z;
-    	gammaMatrix.m10 = a.x-e.x;
-    	gammaMatrix.m11 = a.y-e.y;
-    	gammaMatrix.m12 = a.z-e.z;    	
-    	gammaMatrix.m20 = d.x;
-    	gammaMatrix.m21 = d.y;
-    	gammaMatrix.m22 = d.z;
-    	double gamma = gammaMatrix.determinant()/det;
-
-    	Matrix3d tMatrix = new Matrix3d();
-    	tMatrix.m00 = a.x-b.x;
-    	tMatrix.m01 = a.y-b.y;
-    	tMatrix.m02 = a.z-b.z;
-    	tMatrix.m10 = a.x-c.x;
-    	tMatrix.m11 = a.y-c.y;
-    	tMatrix.m12 = a.z-c.z;    	
-    	tMatrix.m20 = a.z-e.z;
-    	tMatrix.m21 = a.z-e.z;
-    	tMatrix.m22 = a.z-e.z;
-    	double t = tMatrix.determinant()/det;
-
-    	
-    	if(t<rayIn.start||t>rayIn.end) 
-    		return false;
-    	if(gamma<0||gamma>1) 
-    		return false;
-    	if(beta<0||beta>1-gamma)
-    		return false;
-    	return true;
+        
+        // Calculate t ("Parts 1&2")
+        Vector3 ap = new Vector3();
+        ap.sub(a, p);
+        double t = ap.dot(n) / d.dot(n);
+        
+        if (t<0)
+        	return false;
+        
+        // Calculate intersection point x
+        Vector3 dTmp = new Vector3();
+        dTmp.set(d);
+        dTmp.scale(t);
+        Point3 x = new Point3();
+        x.set(p);
+        x.add(dTmp);
+        
+        // "Part 3"
+        Vector3 ba = new Vector3();
+        ba.sub(b, a);
+        Vector3 cb = new Vector3();
+        cb.sub(c, b);
+        Vector3 ac = new Vector3();
+        ac.sub(a, c);
+        
+        Vector3 xa = new Vector3();
+        xa.sub(x, a);
+        Vector3 xb = new Vector3();
+        xb.sub(x, b);
+        Vector3 xc = new Vector3();
+        xc.sub(x, c);
+        
+        Vector3 baCrossxa = new Vector3();
+        baCrossxa.cross(ba, xa);
+        Vector3 cbCrossxb = new Vector3();
+        cbCrossxb.cross(cb, xb);
+        Vector3 acCrossxc = new Vector3();
+        acCrossxc.cross(ac, xc);
+        
+        double q1, q2, q3;
+        
+        q1 = baCrossxa.dot(n);
+        q2 = cbCrossxb.dot(n);
+        q3 = acCrossxc.dot(n);
+        
+        if (q1<=0)
+        	return false;
+        if (q2<=0)
+        	return false;
+        if (q3<=0)
+        	return false;
+        
+        rayIn.evaluate(outRecord.location, t);
+        outRecord.normal.set(n);
+        return true;
     }
 
     public String toString() {
