@@ -105,15 +105,15 @@ public class RayTracer {
 		long startTime = System.currentTimeMillis();
 
 		Ray ray = new Ray();
-		Color pixelColor = new Color();
-		Color rayColor = new Color();
+		Color pixelColor = new Color(0,0,0);
+		Color rayColor = new Color(0,0,0);
 
 		int total = height * width;
 		int counter = 0;
 		int lastShownProgress = 0;
 		
 		
-		// Allows for 9 samples per pixel
+		// Allows for multiple samples per pixel
 		int ns = scene.getSamples();
 		int nx = width+1;
 		int ny = height+1;
@@ -125,22 +125,19 @@ public class RayTracer {
 
 				Color sum = new Color(0,0,0);
 				
-				for (int dx = 0; dx < ns-1; dx++) {
-					for (int dy = 0; dy < ns-1; dy++) {
+				for (int dx = 0; dx < ns; dx++) {
+					for (int dy = 0; dy < ns; dy++) {
 						x = (int)((ix + (dx + 0.5) / ns) / nx);
 						y = (int)((iy + (dy + 0.5) / ns) / ny);
 						
 						// old way
 						// cam.getRay(ray, (x + 0.5)/(double)width, (y + 0.5)/(double)height);	
 						
-						cam.getRay(ray, x, y);	
-						
-						shadeRay(rayColor, scene, ray, scene.getLights(), 1, 1, false);
+						cam.getRay(ray, x, y);
 
-						sum.r += rayColor.r;
-						sum.g += rayColor.g;
-						sum.b += rayColor.b;
-						
+						shadeRay(rayColor, scene, ray, scene.getLights(), 0, 1, false);
+
+						sum.add(rayColor);
 					}
 					pixelColor.set(sum);
 					pixelColor.gammaCorrect(2.2);
