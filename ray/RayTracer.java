@@ -112,9 +112,9 @@ public class RayTracer {
 		int counter = 0;
 		int lastShownProgress = 0;
 		
+		
 		// Allows for 9 samples per pixel
-		scene.setSamples(3);
-		int ns = scene.samples;
+		int ns = scene.getSamples();
 		int nx = width+1;
 		int ny = height+1;
 		int x = 0;
@@ -130,10 +130,13 @@ public class RayTracer {
 						x = (int)((ix + (dx + 0.5) / ns) / nx);
 						y = (int)((iy + (dy + 0.5) / ns) / ny);
 						
-						cam.getRay(ray, (x + 0.5)/(double)width, (y + 0.5)/(double)height);	
+						// old way
+						// cam.getRay(ray, (x + 0.5)/(double)width, (y + 0.5)/(double)height);	
+						
+						cam.getRay(ray, x, y);	
 						
 						shadeRay(rayColor, scene, ray, scene.getLights(), 1, 1, false);
-						
+
 						sum.r += rayColor.r;
 						sum.g += rayColor.g;
 						sum.b += rayColor.b;
@@ -145,8 +148,7 @@ public class RayTracer {
 					image.setPixelColor(pixelColor, x, y);
 				}
 			}
-
-			// Do all of the pretty stuff (unimportant)
+				
 			counter++;
 			float numberOfProgressDots = 20;
 			if((int)(numberOfProgressDots * counter / total) != lastShownProgress) {
