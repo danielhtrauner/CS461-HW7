@@ -58,9 +58,13 @@ public class Glazed extends Shader {
 				r.normalize();
 
 				double r0 = Math.pow(((refractiveIndex-1)/(refractiveIndex+1)), 2);
-
-				double theta = Math.acos(record.normal.dot(r));
-				double reflection = r0 + (1-r0)*Math.pow((1-Math.cos(theta)),5);
+				
+				double cosTheta = record.normal.dot(r);
+				
+				if (cosTheta<0)
+					return;
+				
+				double reflection = r0 + (1-r0)*Math.pow((1-cosTheta),5);
 				//System.out.println(reflection);
 
 				Color reflectionColor = new Color(0,0,0);

@@ -1,5 +1,7 @@
 package ray.surface;
 
+import java.util.ArrayList;
+
 import ray.IntersectionRecord;
 import ray.Ray;
 import ray.shader.Shader;
@@ -28,5 +30,15 @@ public abstract class Surface {
 	 * @return true if the surface intersects the ray
 	 */
 	public abstract boolean intersect(IntersectionRecord outRecord, Ray ray);
+	
+    /**
+     * Add this surface (and possible sub-surfaces) to the scene's list of surfaces
+     * @param sceneSurfaces the list of surfaces in the scene
+     */
+    public void addTo(ArrayList<Surface> sceneSurfaces) {
+        sceneSurfaces.add(this);        
+    }
+
+
 
 }

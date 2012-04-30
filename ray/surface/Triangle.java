@@ -55,8 +55,7 @@ public class Triangle extends Surface {
      * @param ray the ray to intersect
      * @return true if the surface intersects the ray
      */
-    public boolean intersect(IntersectionRecord outRecord, Ray rayIn) {
-
+    public boolean intersect(IntersectionRecord outRecord, Ray rayIn) {    	
     	Vector3 d = new Vector3(rayIn.direction);
     	Point3 e = new Point3(rayIn.origin);
 
@@ -106,41 +105,49 @@ public class Triangle extends Surface {
     	tMatrix.m10 = a.x-c.x;
     	tMatrix.m11 = a.y-c.y;
     	tMatrix.m12 = a.z-c.z;    	
-    	tMatrix.m20 = a.z-e.z;
-    	tMatrix.m21 = a.z-e.z;
+    	tMatrix.m20 = a.x-e.x;
+    	tMatrix.m21 = a.y-e.y;
     	tMatrix.m22 = a.z-e.z;
     	double t = tMatrix.determinant()/det;
-    	Vector3 normal;
+    	
         if(!owner.existsNormals()) {
-	    	normal = new Vector3(norm);
+        	outRecord.normal.set(norm);
         } else {
-        	normal = new Vector3();
-        	Vector3 na = owner.getNormal(0);
-        	Vector3 nb = owner.getNormal(1);
-        	Vector3 nc = owner.getNormal(2);
+        	Vector3 normal = new Vector3();
+        	
+        	Vector3 na = owner.getNormal(index[0]);
+        	Vector3 nb = owner.getNormal(index[1]);
+        	Vector3 nc = owner.getNormal(index[2]);
+        	
         	na.scale(1-beta-gamma);
         	nb.scale(beta);
         	nc.scale(gamma);
+        	
         	normal.set(na);
         	normal.add(nb);
         	normal.add(nc);
+        	
         	normal.normalize();
-        	//normal.scale(1/3);
+        	
+        	outRecord.normal.set(normal);
         }
     	
     	if(t<rayIn.start||t>rayIn.end) {
     		return false;
     	}
+    	
     	if(gamma<0||gamma>1) {
     		return false;
     	}
+    	
     	if(beta<0||beta>(1-gamma)) {
     		return false;
     	}
-    	System.out.println("reached this point");
+
     	rayIn.evaluate(outRecord.location, t);
-    	outRecord.normal.set(normal);
-    	//System.out.println(normal);
+    	outRecord.surface = this;
+    	outRecord.t = t;
+    	
     	return true;
     }
 
