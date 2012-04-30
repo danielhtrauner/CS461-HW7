@@ -15,7 +15,6 @@ import ray.math.Vector3;
 public class RayTracer {
 
 	public static String testFolderPath;
-
 	public static String getTestFolderPath() {
 		return testFolderPath;
 	}
@@ -115,8 +114,8 @@ public class RayTracer {
 		
 		// Allows for multiple samples per pixel
 		int ns = scene.getSamples();
-		int nx = width+1;
-		int ny = height+1;
+		int nx = width;
+		int ny = height;
 		double x = 0;
 		double y = 0;
 
