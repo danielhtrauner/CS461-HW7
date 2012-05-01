@@ -108,6 +108,10 @@ public class Cylinder extends Surface {
 		return false;
 	}
 	
+	public void computeBoundingBox() {
+		//TODO
+	}
+	
 	/**
 	 * @see Object#toString()
 	 */
