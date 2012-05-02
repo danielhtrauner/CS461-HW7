@@ -151,6 +151,10 @@ public class Triangle extends Surface {
     	return true;
     }
 
+    public void computeBoundingBox() {
+		//TODO
+	}
+    
     public String toString() {
         return "Triangle ";
     }

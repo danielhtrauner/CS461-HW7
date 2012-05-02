@@ -44,6 +44,23 @@ public class Scene {
     public int getSamples() { return this.samples==0 ? 1 : this.samples; }
     public void setSamples(int n) {samples = (int)Math.round(Math.sqrt(n)); }
 
+    /** The AABB tree that stores the surfaces */
+    protected AABB aabbTree;
+
+    /**
+     * Initialize AABB tree from the list of all surfaces in the scene.
+     * Send the list to AABB and call createTree.
+     */
+    public void initializeAABB() {
+        Surface[] surfaceArray = new Surface[surfaces.size()];
+        int count = 0;
+        for (Surface s : surfaces) {
+            s.computeBoundingBox();
+            surfaceArray[count++] = s;
+        }
+        AABB.setSurfaces(surfaceArray);
+        aabbTree = AABB.createTree(0, surfaceArray.length);
+    }
 		
 	/**
 	 * Set outRecord to the first intersection of ray with the scene. Return true
@@ -55,7 +72,7 @@ public class Scene {
 	 * @return true if and intersection is found.
 	 */
 	public boolean getFirstIntersection(IntersectionRecord outRecord, Ray ray) {
-		return intersect(outRecord, ray, false);
+		return aabbTree.intersect(outRecord, ray, false);
 	}
 	
 	/**
@@ -66,39 +83,44 @@ public class Scene {
 	 * @return true if any intersection is found
 	 */
 	public boolean getAnyIntersection(Ray ray) {
-		return intersect(null, ray, true);	
+		return aabbTree.intersect(null, ray, true);	
 	}
-
-	/**
-	 * Set outRecord to the first intersection of ray with the scene. Return true
-	 * if there was an intersection and false otherwise. If no intersection was
-	 * found outRecord is unchanged.
-	 *
-	 * @param outRecord the output IntersectionRecord
-	 * @param ray the ray to intersect
-	 * @param anyIntersection if true, will immediately return when found an intersection, and won't modify outRecord
-	 * @return true if and intersection is found.
-	 */
-	public boolean intersect(IntersectionRecord outRecord, Ray rayIn, boolean anyIntersection) {
-
-		boolean ret = false;
-		IntersectionRecord tmp = new IntersectionRecord();
-		Ray ray = new Ray(rayIn.origin, rayIn.direction);
-		ray.start = rayIn.start;
-		ray.end = rayIn.end;
-		
-		for(Iterator<Surface> iter = surfaces.iterator(); iter.hasNext();) {
-			Surface s = iter.next();
-            if (s.intersect(tmp, ray) && tmp.t < ray.end ) {
-                if(anyIntersection) return true;
-                ret = true;
-                ray.end = tmp.t;
-                if(outRecord != null)
-                    outRecord.set(tmp);
-            }
-			
-		}
-		return ret;
-	}
-
+	
+//	NOW LOCATED IN AABB.JAVA--------------------------------------------------------------------------------------	
+//	NOW LOCATED IN AABB.JAVA--------------------------------------------------------------------------------------	
+//	NOW LOCATED IN AABB.JAVA--------------------------------------------------------------------------------------	
+//	/**
+//	 * Set outRecord to the first intersection of ray with the scene. Return true
+//	 * if there was an intersection and false otherwise. If no intersection was
+//	 * found outRecord is unchanged.
+//	 *
+//	 * @param outRecord the output IntersectionRecord
+//	 * @param ray the ray to intersect
+//	 * @param anyIntersection if true, will immediately return when found an intersection, and won't modify outRecord
+//	 * @return true if and intersection is found.
+//	 */
+//	public boolean intersect(IntersectionRecord outRecord, Ray rayIn, boolean anyIntersection) {
+//
+//		boolean ret = false;
+//		IntersectionRecord tmp = new IntersectionRecord();
+//		Ray ray = new Ray(rayIn.origin, rayIn.direction);
+//		ray.start = rayIn.start;
+//		ray.end = rayIn.end;
+//		
+//		for(Iterator<Surface> iter = surfaces.iterator(); iter.hasNext();) {
+//			Surface s = iter.next();
+//            if (s.intersect(tmp, ray) && tmp.t < ray.end ) {
+//                if(anyIntersection) return true;
+//                ret = true;
+//                ray.end = tmp.t;
+//                if(outRecord != null)
+//                    outRecord.set(tmp);
+//            }
+//			
+//		}
+//		return ret;
+//	}
+//	NOW LOCATED IN AABB.JAVA--------------------------------------------------------------------------------------	
+//	NOW LOCATED IN AABB.JAVA--------------------------------------------------------------------------------------	
+//	NOW LOCATED IN AABB.JAVA--------------------------------------------------------------------------------------	
 }

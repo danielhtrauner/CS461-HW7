@@ -71,6 +71,7 @@ public class AABB {
         // Find out the BIG bounding box enclosing all the surfaces in the range [left, right)
         // and store them in minB and maxB.
         // Hint: To find the bounding box for each surface, use getMinBound() and getMaxBound() */
+
     	// TODO DONE
         Point3 minB = new Point3(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY); 
         Point3 maxB = new Point3(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
@@ -104,12 +105,16 @@ public class AABB {
         // Check for the base case. 
         // If the range [left, right) is small enough (constant at top of this file), just return a new leaf node.
 
+
         if(right-left<MAX_SURFACES_PER_LEAF) return new AABB();
+
+
 
 
         // ==== Step 3 ====
         // Figure out the widest dimension (x or y or z).
         // If x is the widest, set widestDim = 0. If y, set widestDim = 1. If z, set widestDim = 2.
+
         //TODO DONE
         int widestDim;
         if(Math.abs(maxB.x-minB.x)>Math.abs(maxB.y-minB.y)) {
