@@ -81,10 +81,6 @@ public class Box extends Surface {
         return true;
 	}
 	
-	public void computeBoundingBox() {
-		//TODO
-	}
-	
 	/**
 	 * @see Object#toString()
 	 */
