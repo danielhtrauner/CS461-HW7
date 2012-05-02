@@ -168,4 +168,10 @@ public class Cone extends Surface {
 				+ " " + shader + " end";
 	}
 
+	@Override
+	public void computeBoundingBox() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

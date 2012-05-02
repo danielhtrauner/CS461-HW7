@@ -114,5 +114,11 @@ public class Cylinder extends Surface {
 	public String toString() {
 		return "Cylinder " + center + " " + radius + " " + height + " "+ shader + " end";
 	}
+
+	@Override
+	public void computeBoundingBox() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

@@ -74,4 +74,10 @@ public class Sphere extends Surface {
 		return "sphere " + center + " " + radius + " " + shader + " end";
 	}
 
+	@Override
+	public void computeBoundingBox() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

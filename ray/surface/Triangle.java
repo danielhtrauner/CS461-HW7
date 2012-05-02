@@ -154,4 +154,33 @@ public class Triangle extends Surface {
     public String toString() {
         return "Triangle ";
     }
+
+	public void computeBoundingBox() {
+		Point3 v = new Point3(owner.getVertex(index[0]));
+		maxBound.set(v);
+		minBound.set(v);
+		for(int i=1;i<3;i++) {
+			if(owner.getVertex(index[i]).x>=maxBound.x) {
+				maxBound.x = owner.getVertex(index[i]).x;
+			}
+			if(owner.getVertex(index[i]).y>=maxBound.y) {
+				maxBound.y = owner.getVertex(index[i]).y;
+			}
+			if(owner.getVertex(index[i]).z>=maxBound.z) {
+				maxBound.z = owner.getVertex(index[i]).z;
+			}
+			if(owner.getVertex(index[i]).x<=minBound.x) {
+				minBound.x = owner.getVertex(index[i]).x;
+			}
+			if(owner.getVertex(index[i]).y<=minBound.y) {
+				minBound.y = owner.getVertex(index[i]).y;
+			}
+			if(owner.getVertex(index[i]).z<=minBound.z) {
+				minBound.z = owner.getVertex(index[i]).z;
+			}
+		}
+		averagePosition.set(maxBound);
+		averagePosition.add(new Vector3(minBound));
+		averagePosition.scale(1/2);
+	}
 }

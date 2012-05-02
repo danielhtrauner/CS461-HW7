@@ -87,5 +87,14 @@ public class Box extends Surface {
 	public String toString() {
 		return "Box " + minPt + " " + maxPt + " " + shader + " end";
 	}
+
+	@Override
+	public void computeBoundingBox() {
+		maxBound.set(maxPt);
+		minBound.set(minPt);
+		averagePosition.set(maxPt);
+		averagePosition.add(new Vector3(minPt));
+		averagePosition.scale(1/2);
+	}
 }
 

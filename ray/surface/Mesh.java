@@ -195,4 +195,10 @@ public class Mesh extends Surface{
         for (Triangle triangle : triangles)
             surfaces.add(triangle); 
     }
+
+	@Override
+	public void computeBoundingBox() {
+		// TODO Auto-generated method stub
+		
+	}
 }
