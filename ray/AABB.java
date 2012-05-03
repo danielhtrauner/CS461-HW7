@@ -72,7 +72,6 @@ public class AABB {
         // and store them in minB and maxB.
         // Hint: To find the bounding box for each surface, use getMinBound() and getMaxBound() */
 
-    	// TODO DONE
         Point3 minB = new Point3(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY); 
         Point3 maxB = new Point3(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
 
@@ -100,13 +99,12 @@ public class AABB {
 			}
         	
         }
-
         // ==== Step 2 ====
         // Check for the base case. 
         // If the range [left, right) is small enough (constant at top of this file), just return a new leaf node.
 
 
-        if(right-left<MAX_SURFACES_PER_LEAF) return new AABB();
+        if(right-left<0) return new AABB(true,minB,maxB,null,null,0,0);
 
 
 
@@ -115,7 +113,6 @@ public class AABB {
         // Figure out the widest dimension (x or y or z).
         // If x is the widest, set widestDim = 0. If y, set widestDim = 1. If z, set widestDim = 2.
 
-        //TODO DONE
         int widestDim;
         if(Math.abs(maxB.x-minB.x)>Math.abs(maxB.y-minB.y)) {
         	if(Math.abs(maxB.x-minB.x)>Math.abs(maxB.z-minB.z)) {
@@ -126,7 +123,6 @@ public class AABB {
         		widestDim=1;
         	} else widestDim=2;        	
         }
-
 
 
         // ==== Step 4 (DONE) ====
@@ -154,14 +150,45 @@ public class AABB {
      * @param anyIntersection if true, will immediately return when found an intersection
      * @return true if and intersection is found.
      */
-    public boolean intersect(IntersectionRecord outRecord, Ray rayIn, boolean anyIntersection) {
+    public boolean intersect(IntersectionRecord outRecord, Ray ray, boolean anyIntersection) {
         // TODO: fill in this function.
-	// If the ray doesn't intersect this bounding box, return false right away.
+    	// If the ray doesn't intersect this bounding box, return false right away.
         // For a leaf node, use a normal linear search as before in Scene.java.
         // Otherwise, search in the left and right children.
-            
-        return false;
+   
+		if(doesIntersect(ray)) { 
+			if(isLeaf) {
+				boolean ret = false;
+				IntersectionRecord tmp = new IntersectionRecord();
+				Ray r = new Ray(ray.origin, ray.direction);
+				r.start = ray.start;
+				r.end = ray.end;
+				
+				for(int i=0; i<surfaces.length;i++) {
+					Surface s = surfaces[i];
+		            if (s.intersect(tmp, r) && tmp.t < r.end ) {
+		                if(anyIntersection) return true;
+		                ret = true;
+		                r.end = tmp.t;
+		                if(outRecord != null)
+		                    outRecord.set(tmp);
+		            }
+				}
+				return ret;
+			} else {
 
+				IntersectionRecord child1Record=new IntersectionRecord();
+				IntersectionRecord child2Record=new IntersectionRecord();
+				boolean child0=child[0].intersect(child1Record, ray, anyIntersection);
+				boolean child1=child[1].intersect(child2Record, ray, anyIntersection);
+				if(child0||child1) {
+					if(child1Record.t>child2Record.t)
+						outRecord.set(child2Record);
+					else outRecord.set(child1Record);
+				}
+				return child0 || child1;
+			}
+		} else return false;
     }
         
     /** 
@@ -170,11 +197,36 @@ public class AABB {
      * @return true if ray intersects this bounding box
      */
     private boolean doesIntersect(Ray ray) {
-        // TODO: fill in this function.
-        // Hint: reuse your code from box intersection.
+        Vector3 d = ray.direction;
+        Vector3 m1 = new Vector3();
+        m1.sub(minBound, ray.origin); // minPt - e
+        Vector3 m2 = new Vector3();
+        m2.sub(maxBound, ray.origin); // maxPt - e
+                
+        double t1x = m1.x / d.x, t1y = m1.y / d.y, t1z = m1.z / d.z;
+        double t2x = m2.x / d.x, t2y = m2.y / d.y, t2z = m2.z / d.z;
+        double minx = Math.min(t1x, t2x);
+        double miny = Math.min(t1y, t2y);
+        double minz = Math.min(t1z, t2z);
+        double maxx = Math.max(t1x, t2x);
+        double maxy = Math.max(t1y, t2y);
+        double maxz = Math.max(t1z, t2z);
+                                
+        double t1 = Math.max(minx,  Math.max(miny, minz));
+        double t2 = Math.min(maxx,  Math.min(maxy, maxz));
+                
+        if (t1 > t2)
+            return false; // no intersection
 
-        return false;
+        if (t1 < ray.start || t1 > ray.end) // intersection not in valid range
+            return false;
 
+        // else intersection at t1
+        Point3 p = new Point3(); // intersection point
+        ray.evaluate(p, t1);
+
+        return true;
+    	
     }
 }
 
