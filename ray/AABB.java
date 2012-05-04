@@ -74,11 +74,8 @@ public class AABB {
 
         Point3 minB = new Point3(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY); 
         Point3 maxB = new Point3(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
-
-        minB.set(surfaces[0].getMinBound());
-        maxB.set(surfaces[0].getMaxBound());
         
-        for(int i=1;i<surfaces.length;i++) {
+        for(int i=0;i<surfaces.length;i++) {
 			if(surfaces[i].getMaxBound().x>=maxB.x) {
 				maxB.x = surfaces[i].getMaxBound().x;
 			}
@@ -104,7 +101,8 @@ public class AABB {
         // If the range [left, right) is small enough (constant at top of this file), just return a new leaf node.
 
 
-        if(right-left<0) return new AABB(true,minB,maxB,null,null,0,0);
+        if(left-right<MAX_SURFACES_PER_LEAF) 
+        	return new AABB(true,minB,maxB,null,null,left,right);
 
 
 
@@ -135,10 +133,10 @@ public class AABB {
         // ==== Step 5 ====
         // Recursively create left and right children.
         AABB leftChild = null, rightChild = null;
-
-        leftChild = new AABB(true, AABB.surfaces[0].getMinBound(), AABB.surfaces[0].getMinBound(), null, null, leftChild.left, leftChild.right);
-        rightChild = new AABB(true, AABB.surfaces[0].getMinBound(), AABB.surfaces[0].getMinBound(), null, null, rightChild.left, rightChild.right);
-        
+        int midpoint = left+right/2;
+        leftChild = AABB.createTree(left,midpoint);
+        rightChild = AABB.createTree(midpoint,right);
+         
         return new AABB(false, minB, maxB, leftChild, rightChild, left, right);
     }
         
