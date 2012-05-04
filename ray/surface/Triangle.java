@@ -149,7 +149,7 @@ public class Triangle extends Surface {
     	outRecord.t = t;
     	
     	return true;
-    }
+    } 
     
     public String toString() {
         return "Triangle ";
@@ -159,16 +159,22 @@ public class Triangle extends Surface {
 		
 		maxBound = new Point3(Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY);
 		minBound = new Point3(Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY);
+		
 		maxBound.x = Math.max(owner.getVertex(index[0]).x, owner.getVertex(index[1]).x);
 		maxBound.x = Math.max(maxBound.x, owner.getVertex(index[2]).x);
+		
 		maxBound.y = Math.max(owner.getVertex(index[0]).y, owner.getVertex(index[1]).y);
 		maxBound.y = Math.max(maxBound.y, owner.getVertex(index[2]).y);
+		
 		maxBound.z = Math.max(owner.getVertex(index[0]).z, owner.getVertex(index[1]).z);
 		maxBound.z = Math.max(maxBound.z, owner.getVertex(index[2]).z);
+		
 		minBound.x = Math.min(owner.getVertex(index[0]).x, owner.getVertex(index[1]).x);
 		minBound.x = Math.min(minBound.x, owner.getVertex(index[2]).x);
+		
 		minBound.y = Math.min(owner.getVertex(index[0]).y, owner.getVertex(index[1]).y);
 		minBound.y = Math.min(minBound.y, owner.getVertex(index[2]).y);
+		
 		minBound.z = Math.min(owner.getVertex(index[0]).z, owner.getVertex(index[1]).z);
 		minBound.z = Math.min(minBound.z, owner.getVertex(index[2]).z);
 /*

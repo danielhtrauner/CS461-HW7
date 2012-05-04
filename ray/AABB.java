@@ -13,7 +13,7 @@ import ray.surface.Surface;
 public class AABB {
     
     /** The maximum number of surfaces in a leaf node */
-    public static final int MAX_SURFACES_PER_LEAF = 10;
+    public static final int MAX_SURFACES_PER_LEAF = 10000;
     
     boolean isLeaf;
         
@@ -167,7 +167,8 @@ public class AABB {
 				for(int i=left; i<right;i++) {
 					Surface s = surfaces[i];
 		            if (s.intersect(tmp, r) && tmp.t < r.end ) {
-		                if(anyIntersection) return true;
+		                if(anyIntersection) 
+		                	return true;
 		                ret = true;
 		                r.end = tmp.t;
 		                if(outRecord != null)
@@ -179,6 +180,9 @@ public class AABB {
 
 				IntersectionRecord child1Record=new IntersectionRecord();
 				IntersectionRecord child2Record=new IntersectionRecord();
+				
+				child1Record.t = Double.POSITIVE_INFINITY;
+				child2Record.t = Double.POSITIVE_INFINITY;
 				
 				boolean child0=child[0].intersect(child1Record, ray, anyIntersection);
 				boolean child1=child[1].intersect(child2Record, ray, anyIntersection);
