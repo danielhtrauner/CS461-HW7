@@ -157,8 +157,10 @@ public class Triangle extends Surface {
 
 	public void computeBoundingBox() {
 		Point3 v = new Point3(owner.getVertex(index[0]));
-		maxBound.set(v);
-		minBound.set(v);
+		
+		maxBound = new Point3();
+		minBound = new Point3();
+		
 		for(int i=1;i<3;i++) {
 			if(owner.getVertex(index[i]).x>=maxBound.x) {
 				maxBound.x = owner.getVertex(index[i]).x;
@@ -179,7 +181,8 @@ public class Triangle extends Surface {
 				minBound.z = owner.getVertex(index[i]).z;
 			}
 		}
-		averagePosition.set(maxBound);
+		averagePosition = new Point3(maxBound);
+		
 		averagePosition.add(new Vector3(minBound));
 		averagePosition.scale(1/2);
 	}

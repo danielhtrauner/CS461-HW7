@@ -136,8 +136,8 @@ public class AABB {
         // Recursively create left and right children.
         AABB leftChild = null, rightChild = null;
 
-        leftChild = new AABB(true, leftChild.surfaces[0].getMinBound(), leftChild.surfaces[0].getMinBound(), null, null, leftChild.left, leftChild.right);
-        rightChild = new AABB(true, rightChild.surfaces[0].getMinBound(), rightChild.surfaces[0].getMinBound(), null, null, rightChild.left, rightChild.right);
+        leftChild = new AABB(true, AABB.surfaces[0].getMinBound(), AABB.surfaces[0].getMinBound(), null, null, leftChild.left, leftChild.right);
+        rightChild = new AABB(true, AABB.surfaces[0].getMinBound(), AABB.surfaces[0].getMinBound(), null, null, rightChild.left, rightChild.right);
         
         return new AABB(false, minB, maxB, leftChild, rightChild, left, right);
     }
