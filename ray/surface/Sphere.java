@@ -76,19 +76,15 @@ public class Sphere extends Surface {
 
 	@Override
 	public void computeBoundingBox() {
-		// TODO Auto-generated method stub
+
+		maxBound = new Point3(center);
+		minBound = new Point3(center);
 		
-		Point3 maxPt = new Point3();
-		Point3 minPt = new Point3();
-		
-		maxPt.add(new Vector3(radius, radius, radius));
-		minPt.sub(new Vector3(radius, radius, radius));
-		
-		maxBound = new Point3(maxPt);
-		minBound = new Point3(minPt);
-		
+		maxBound.add(new Vector3(radius, radius, radius));
+		minBound.sub(new Vector3(radius, radius, radius));
+				
 		averagePosition=new Point3(maxBound);
-		averagePosition.add(new Vector3(minPt));
+		averagePosition.add(new Vector3(minBound));
 		averagePosition.scale(1/2);
 	}
 
