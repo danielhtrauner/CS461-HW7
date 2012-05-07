@@ -177,31 +177,10 @@ public class Triangle extends Surface {
 		
 		minBound.z = Math.min(owner.getVertex(index[0]).z, owner.getVertex(index[1]).z);
 		minBound.z = Math.min(minBound.z, owner.getVertex(index[2]).z);
-/*
-		for(int i=0;i<3;i++) {
-			if(owner.getVertex(index[i]).x>=maxBound.x) {
-				maxBound.x = owner.getVertex(index[i]).x;
-			}
-			if(owner.getVertex(index[i]).y>=maxBound.y) {
-				maxBound.y = owner.getVertex(index[i]).y;
-			}
-			if(owner.getVertex(index[i]).z>=maxBound.z) {
-				maxBound.z = owner.getVertex(index[i]).z;
-			}
-			if(owner.getVertex(index[i]).x<=minBound.x) {
-				minBound.x = owner.getVertex(index[i]).x;
-			}
-			if(owner.getVertex(index[i]).y<=minBound.y) {
-				minBound.y = owner.getVertex(index[i]).y;
-			}
-			if(owner.getVertex(index[i]).z<=minBound.z) {
-				minBound.z = owner.getVertex(index[i]).z;
-			}
-		}
-*/		
-		averagePosition = new Point3(maxBound);
-		
-		averagePosition.add(new Vector3(minBound));
-		averagePosition.scale(1/2);
+
+		averagePosition=new Point3();
+		averagePosition.x = (owner.getVertex(index[0]).x+owner.getVertex(index[1]).x+owner.getVertex(index[2]).x)/3;
+		averagePosition.y = (owner.getVertex(index[0]).y+owner.getVertex(index[1]).y+owner.getVertex(index[2]).y)/3;
+		averagePosition.z = (owner.getVertex(index[0]).z+owner.getVertex(index[1]).z+owner.getVertex(index[2]).z)/3;
 	}
 }
