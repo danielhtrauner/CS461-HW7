@@ -13,7 +13,7 @@ import ray.surface.Surface;
 public class AABB {
     
     /** The maximum number of surfaces in a leaf node */
-    public static final int MAX_SURFACES_PER_LEAF = 10000;
+    public static final int MAX_SURFACES_PER_LEAF = 10;
     
     boolean isLeaf;
         
@@ -225,12 +225,8 @@ public class AABB {
         if (t1 > t2)
             return false; // no intersection
 
-        if (t1 < ray.start || t1 > ray.end) // intersection not in valid range
+        if (t2 < ray.start || t1 > ray.end) // intersection not in valid range
             return false;
-
-        // else intersection at t1
-        Point3 p = new Point3(); // intersection point
-        ray.evaluate(p, t1);
 
         return true;
     	

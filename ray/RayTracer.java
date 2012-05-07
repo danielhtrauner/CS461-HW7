@@ -77,11 +77,11 @@ public class RayTracer {
 
 				// Initialize AABB tree
                 scene.initializeAABB();
-				System.out.println("done tree");
 				
 				// Render the scene
+				System.out.println("started rendering");
 				renderImage(scene);
-
+				
 				// Write the image out
 				scene.getImage().write(outputFilename);
 			}
