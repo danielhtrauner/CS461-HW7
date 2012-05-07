@@ -187,17 +187,20 @@ public class AABB {
 				boolean child0=child[0].intersect(child0Record, ray, anyIntersection);
 				boolean child1=child[1].intersect(child1Record, ray, anyIntersection);
 				
-				if(child0 && child1) {
+				/* For some reason we have to check if child0Record's and child1Record's surfaces
+				 * aren't null otherwise we get a null pointer exception... 
+				 */
+				if(child0 && child1 && child0Record.surface != null && child1Record.surface != null) {
 					if (child0Record.t>child1Record.t)
 						outRecord.set(child1Record);
 					else 
 						outRecord.set(child0Record);
 				}
 				
-				else if (child0)
+				else if (child0 && child0Record.surface != null)
 					outRecord.set(child0Record);
 				
-				else if (child1)
+				else if (child1 && child1Record.surface != null)
 					outRecord.set(child1Record);
 
 				return child0 || child1;
