@@ -33,9 +33,9 @@ public class Glass extends Shader {
     public void shade(Color outColor, Scene scene, ArrayList<Light> lights, Vector3 toEye, 
                       IntersectionRecord record, int depth, double contribution, boolean internal) {
 
-    		toEye.normalize();
         	//Calculate Reflection Ray
     		// r = -toEye - 2(-toEye.dot(n))*n;
+			toEye.normalize();
             Vector3 l = new Vector3(toEye);
             l.scale(-1);
             Vector3 norm = new Vector3(record.normal);
@@ -52,11 +52,8 @@ public class Glass extends Shader {
 				// Implement Fresnel equation (Shirley 13.1)
 				// Scale the vector L by -1 to get R that points away from the surface as the normal does.
 				Vector3 r = new Vector3(toEye);
-
 				r.normalize();
-
 				double r0 = Math.pow(((refractiveIndex-1)/(refractiveIndex+1)), 2);
-				
 				double cosTheta = record.normal.dot(r);
 				
 				if (cosTheta<0)
