@@ -83,9 +83,7 @@ public class Sphere extends Surface {
 		maxBound.add(new Vector3(radius, radius, radius));
 		minBound.sub(new Vector3(radius, radius, radius));
 				
-		averagePosition=new Point3(maxBound);
-		averagePosition.add(new Vector3(minBound));
-		averagePosition.scale(1/2);
+		averagePosition=new Point3(center);
 	}
 
 }

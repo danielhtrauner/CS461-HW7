@@ -117,8 +117,18 @@ public class Cylinder extends Surface {
 
 	@Override
 	public void computeBoundingBox() {
-		// TODO Auto-generated method stub
 		
+		maxBound = new Point3(center);
+		maxBound.z += height;
+		maxBound.x += radius;
+		maxBound.y += radius;
+		
+		minBound = new Point3(center);
+		minBound.x -= radius;
+		minBound.y -= radius;
+		
+		averagePosition = new Point3(center);
+		averagePosition.z += height/2;
 	}
 }
 

@@ -178,24 +178,33 @@ public class AABB {
 				return ret;
 			} else {
 
-				IntersectionRecord child1Record=new IntersectionRecord();
-				IntersectionRecord child2Record=new IntersectionRecord();
+				IntersectionRecord child0Record = new IntersectionRecord();
+				IntersectionRecord child1Record = new IntersectionRecord();
 				
+				child0Record.t = Double.POSITIVE_INFINITY;
 				child1Record.t = Double.POSITIVE_INFINITY;
-				child2Record.t = Double.POSITIVE_INFINITY;
+
+				boolean child0=child[0].intersect(child0Record, ray, anyIntersection);
+				boolean child1=child[1].intersect(child1Record, ray, anyIntersection);
 				
-				boolean child0=child[0].intersect(child1Record, ray, anyIntersection);
-				boolean child1=child[1].intersect(child2Record, ray, anyIntersection);
-				
-				if(child0||child1) {
-					if(child1Record.t>child2Record.t)
-						outRecord.set(child2Record);
-					else outRecord.set(child1Record);
+				if(child0 && child1) {
+					if (child0Record.t>child1Record.t)
+						outRecord.set(child1Record);
+					else 
+						outRecord.set(child0Record);
 				}
+				
+				else if (child0)
+					outRecord.set(child0Record);
+				
+				else if (child1)
+					outRecord.set(child1Record);
+
 				return child0 || child1;
 			}
 		} else 
 			return false;
+
     }
         
     /** 

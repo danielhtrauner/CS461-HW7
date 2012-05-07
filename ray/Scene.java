@@ -1,8 +1,6 @@
 package ray;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import ray.light.Light;
 import ray.shader.Shader;
 import ray.surface.Surface;
@@ -85,42 +83,4 @@ public class Scene {
 	public boolean getAnyIntersection(Ray ray) {
 		return aabbTree.intersect(null, ray, true);	
 	}
-	
-//	NOW LOCATED IN AABB.JAVA--------------------------------------------------------------------------------------	
-//	NOW LOCATED IN AABB.JAVA--------------------------------------------------------------------------------------	
-//	NOW LOCATED IN AABB.JAVA--------------------------------------------------------------------------------------	
-//	/**
-//	 * Set outRecord to the first intersection of ray with the scene. Return true
-//	 * if there was an intersection and false otherwise. If no intersection was
-//	 * found outRecord is unchanged.
-//	 *
-//	 * @param outRecord the output IntersectionRecord
-//	 * @param ray the ray to intersect
-//	 * @param anyIntersection if true, will immediately return when found an intersection, and won't modify outRecord
-//	 * @return true if and intersection is found.
-//	 */
-//	public boolean intersect(IntersectionRecord outRecord, Ray rayIn, boolean anyIntersection) {
-//
-//		boolean ret = false;
-//		IntersectionRecord tmp = new IntersectionRecord();
-//		Ray ray = new Ray(rayIn.origin, rayIn.direction);
-//		ray.start = rayIn.start;
-//		ray.end = rayIn.end;
-//		
-//		for(Iterator<Surface> iter = surfaces.iterator(); iter.hasNext();) {
-//			Surface s = iter.next();
-//            if (s.intersect(tmp, ray) && tmp.t < ray.end ) {
-//                if(anyIntersection) return true;
-//                ret = true;
-//                ray.end = tmp.t;
-//                if(outRecord != null)
-//                    outRecord.set(tmp);
-//            }
-//			
-//		}
-//		return ret;
-//	}
-//	NOW LOCATED IN AABB.JAVA--------------------------------------------------------------------------------------	
-//	NOW LOCATED IN AABB.JAVA--------------------------------------------------------------------------------------	
-//	NOW LOCATED IN AABB.JAVA--------------------------------------------------------------------------------------	
 }

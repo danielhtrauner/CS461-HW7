@@ -79,7 +79,6 @@ public class RayTracer {
                 scene.initializeAABB();
 				
 				// Render the scene
-				System.out.println("started rendering");
 				renderImage(scene);
 				
 				// Write the image out
