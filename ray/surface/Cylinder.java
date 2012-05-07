@@ -33,7 +33,7 @@ public class Cylinder extends Surface {
 	 * @return true if the surface intersects the ray
 	 */
 	public boolean intersect(IntersectionRecord outRecord, Ray rayIn) {
-		boolean inters = false;
+        boolean inters = false;
         double tw = Double.POSITIVE_INFINITY; // t value for intersection with cylinder wall
         double te = Double.POSITIVE_INFINITY; // t value for intersection with end caps
         Point3 q = new Point3(); // intersection point
@@ -56,12 +56,16 @@ public class Cylinder extends Surface {
         double C = ec.dot(ec) - radius * radius;
 
         double discr = B*B - 4*A*C;
-        if (discr >= 0.0) {
+        if (discr >= 0.0) { // intersection with cylinder wall
             double s = Math.sqrt(discr);
             double t1 = (-B + s) / (2 * A);
             double t2 = (-B - s) / (2 * A);
-            double t = Math.min(t1,  t2);  // intersection with cylinder wall
-            if (t >= rayIn.start &&  t <= rayIn.end) {
+            double t = Double.POSITIVE_INFINITY;
+            if (t1 >= rayIn.start && t1 < t)
+                t = t1;
+            if (t2 >= rayIn.start && t2 < t)
+                t = t2;
+            if (t >= rayIn.start &&  t <= rayIn.end && t < Double.POSITIVE_INFINITY) {
                 rayIn.evaluate(q, t); // intersection point
                 if (Math.abs(q.z - center.z) <= height/2) {  // sidewall of cylinder
                     inters = true;
@@ -104,9 +108,10 @@ public class Cylinder extends Surface {
             }
             return true;
         }
-		
-		return false;
-	}
+        
+
+        return false;
+    }
 	
 	/**
 	 * @see Object#toString()
