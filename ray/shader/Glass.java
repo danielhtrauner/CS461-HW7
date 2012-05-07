@@ -33,7 +33,7 @@ public class Glass extends Shader {
     public void shade(Color outColor, Scene scene, ArrayList<Light> lights, Vector3 toEye, 
                       IntersectionRecord record, int depth, double contribution, boolean internal) {
 
-        	//Calculate Reflection Ray
+        	// Calculate Reflection Ray
     		// r = -toEye - 2(-toEye.dot(n))*n;
 			toEye.normalize();
             Vector3 l = new Vector3(toEye);
@@ -47,6 +47,40 @@ public class Glass extends Shader {
             reflectionRay.start = Ray.EPSILON;
             reflectionRay.end = Double.POSITIVE_INFINITY;
 
+            // Calculate T Ray
+            // t = N(d-n(d-n))/Nt - n*sqrt(1-(n^2(1-(d.n)^2))/nt^2)
+            Vector3 t = new Vector3();
+            Vector3 dir = new Vector3(toEye);
+            Vector3 nor = new Vector3(record.normal);
+            Vector3 term1 = new Vector3();
+            Vector3 term2 = new Vector3();
+            double n;
+            double nt;
+            if(internal==false) {
+	            n = 1.0;
+	            nt = refractiveIndex;
+            } else {
+                nt = 1.0;
+                nor.scale(-1);
+                n = refractiveIndex;
+            }
+            dir.scale(-1);
+            
+            term1.set(nor);
+            term1.scale(-1*nor.dot(dir));
+            term1.add(dir);
+            term1.scale(n/nt);
+            
+            term2.set(nor);
+            double coefficientSquared = 1- ( (Math.pow(n,2) * (1 - Math.pow( dir.dot(nor), 2 ) ) ) / Math.pow(nt, 2) );
+            term2.scale(Math.sqrt(coefficientSquared));
+            t.set(term1);
+            t.sub(term2);
+            
+            Ray tRay = new Ray(record.location,t);
+            tRay.start = Ray.EPSILON;
+            tRay.end = Double.POSITIVE_INFINITY;
+           
 	    	if(depth<=MAXDEPTH&&contribution>=MINCONTRIBUTION) {
 
 				// Implement Fresnel equation (Shirley 13.1)
@@ -63,16 +97,18 @@ public class Glass extends Shader {
 				//System.out.println(reflection);
 
 				Color reflectionColor = new Color(0,0,0);
-
+				Color internalColor = new Color(0,0,0);
 				
 				// compute reflected contribution (make a recursive call to shadeRay)
 		    	depth++;
 				RayTracer.shadeRay(reflectionColor, scene, reflectionRay, lights, depth, contribution, internal);
-				
-
+				if(coefficientSquared>=0) {
+					RayTracer.shadeRay(internalColor, scene, tRay, lights, depth, contribution, !internal);
+				}
 				
 				reflectionColor.scale(reflection);
-
+				internalColor.scale(1-reflection);
+				reflectionColor.add(internalColor);
 				outColor.set(reflectionColor);
 	    	}
 	    	
