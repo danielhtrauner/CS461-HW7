@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<scene>
+  <samples>1</samples>
+  <camera>
+    <viewPoint>15  11  30</viewPoint>
+    <viewDir>  -10 -6.9 -20</viewDir>
+    <projNormal>10  6.9  20</projNormal>
+    <viewUp>0 1 0</viewUp>
+    <projDistance>18</projDistance>
+    <viewWidth>3</viewWidth>
+    <viewHeight>3</viewHeight>
+  </camera>
+  <image>
+    400 400
+  </image>
+  <shader name="diamond" type="Glass">
+    <refractiveIndex>2.5</refractiveIndex>
+  </shader>
+  <shader name="red" type="Glazed">
+    <refractiveIndex>6</refractiveIndex>
+    <substrate type="Lambertian">
+      <diffuseColor>1 .2 .2</diffuseColor>
+    </substrate>
+  </shader>
+  <shader name="blue" type="Glazed">
+    <refractiveIndex>6</refractiveIndex>
+    <substrate type="Phong">
+      <diffuseColor>.4 .4 1</diffuseColor>
+      <specularColor>1 1 1</specularColor>
+      <exponent>170</exponent>
+    </substrate>
+  </shader>
+
+  <surface type="Mesh">
+    <shader ref="diamond" />
+    <data>diamond.msh</data>
+  </surface>
+  <surface type="Mesh">
+    <shader ref="red" />
+    <data>check20.msh</data>
+  </surface>
+  <surface type="Box">
+    <shader ref="blue" />
+    <minPt>-10 -.2   -10</minPt>
+    <maxPt> 10 -.00001 10</maxPt>
+  </surface>
+
+  <light>
+    <position>2.5 1 4</position>
+    <intensity>.3 .3 .3</intensity>
+  </light>
+  <light>
+    <position>5 20 4</position>
+    <intensity>.5 .5 .5</intensity>
+  </light>
+  <light>
+    <position>7.5 20 14</position>
+    <intensity>.5 .5 .5</intensity>
+  </light>
+  <light>
+    <position>2 1 12</position>
+    <intensity>1 1 1</intensity>
+  </light>
+  <light>
+    <position>5 24 12</position>
+    <intensity>1 1 1</intensity>
+  </light>
+  <light>
+    <position>8 13 12</position>
+    <intensity>1 1 1</intensity>
+  </light>
+</scene>
