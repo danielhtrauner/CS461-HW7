@@ -33,7 +33,7 @@ public class Sphere extends Surface {
 	 * @return true if the surface intersects the ray
 	 */
 	public boolean intersect(IntersectionRecord outRecord, Ray rayIn) {
-        //compute ray-sphere intersection (see book p. 77)
+		 //compute ray-sphere intersection (see book p. 77)
         Vector3 d = rayIn.direction;
         Vector3 ec = new Vector3();
         ec.sub(rayIn.origin, center); // e-c
@@ -48,9 +48,13 @@ public class Sphere extends Surface {
             double s = Math.sqrt(discr);
             double t1 = (-B + s) / (2 * A);
             double t2 = (-B - s) / (2 * A);
-            double t = Math.min(t1,  t2);
-                        
-            if (t < rayIn.start || t > rayIn.end)
+            double t = Double.POSITIVE_INFINITY;
+
+            if (t1 >= rayIn.start && t1 < t)
+                t = t1;
+            if (t2 >= rayIn.start && t2 < t)
+                t = t2;
+            if (t > rayIn.end || t == Double.POSITIVE_INFINITY)
                 return false;
                         
             Point3 p = new Point3(); // intersection point

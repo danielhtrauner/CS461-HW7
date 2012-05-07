@@ -34,7 +34,6 @@ public class Glass extends Shader {
                       IntersectionRecord record, int depth, double contribution, boolean internal) {
 
         	// Calculate Reflection Ray
-    		// r = -toEye - 2(-toEye.dot(n))*n;
 			toEye.normalize();
             Vector3 l = new Vector3(toEye);
             l.scale(-1);
@@ -56,6 +55,7 @@ public class Glass extends Shader {
             Vector3 term2 = new Vector3();
             double n;
             double nt;
+            
             if(internal==false) {
 	            n = 1.0;
 	            nt = refractiveIndex;
@@ -64,10 +64,12 @@ public class Glass extends Shader {
                 nor.scale(-1);
                 n = refractiveIndex;
             }
+            
             dir.scale(-1);
             
             term1.set(nor);
-            term1.scale(-1*nor.dot(dir));
+            term1.scale(nor.dot(dir));
+            term1.scale(-1);
             term1.add(dir);
             term1.scale(n/nt);
             
@@ -81,7 +83,7 @@ public class Glass extends Shader {
             tRay.start = Ray.EPSILON;
             tRay.end = Double.POSITIVE_INFINITY;
            
-	    	if(depth<=MAXDEPTH&&contribution>=MINCONTRIBUTION) {
+	    	if(depth<=MAXDEPTH && contribution>=MINCONTRIBUTION) {
 
 				// Implement Fresnel equation (Shirley 13.1)
 				// Scale the vector L by -1 to get R that points away from the surface as the normal does.
@@ -94,22 +96,26 @@ public class Glass extends Shader {
 					return;
 				
 				double reflection = r0 + (1-r0)*Math.pow((1-cosTheta),5);
-				//System.out.println(reflection);
 
 				Color reflectionColor = new Color(0,0,0);
 				Color internalColor = new Color(0,0,0);
+				Color totalColor = new Color(0,0,0);
 				
 				// compute reflected contribution (make a recursive call to shadeRay)
 		    	depth++;
+		    	
 				RayTracer.shadeRay(reflectionColor, scene, reflectionRay, lights, depth, contribution, internal);
+				reflectionColor.scale(reflection);
+				
 				if(coefficientSquared>=0) {
 					RayTracer.shadeRay(internalColor, scene, tRay, lights, depth, contribution, !internal);
+					internalColor.scale(1-reflection);
 				}
 				
-				reflectionColor.scale(reflection);
-				internalColor.scale(1-reflection);
-				reflectionColor.add(internalColor);
-				outColor.set(reflectionColor);
+				totalColor.add(reflectionColor);
+				totalColor.add(internalColor);
+				
+				outColor.set(totalColor);
 	    	}
 	    	
     }
