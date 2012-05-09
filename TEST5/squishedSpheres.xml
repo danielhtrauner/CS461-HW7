@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--  A simple ellipsoid, made from a transformed sphere mesh
+ -->
+<scene>
+  <camera>
+    <viewPoint>0 400 1500</viewPoint>
+    <viewDir>0 -.8 -3</viewDir>
+    <projNormal>0 .8 3</projNormal>
+    <viewUp>0 1 0</viewUp>
+    <projDistance>200</projDistance>
+    <viewWidth>1.0</viewWidth>
+    <viewHeight>0.6667</viewHeight>
+  </camera>
+  <image>
+    900 600
+  </image>
+  <shader name="blue" type="Phong">
+    <diffuseColor>.05 .2 1</diffuseColor>
+    <specularColor>0.8 0.8 0.8</specularColor>
+    <exponent>100</exponent>
+  </shader>
+  <shader name="gray" type="Lambertian">
+    <diffuseColor>0.6 0.6 0.6</diffuseColor>
+  </shader>
+
+<surface type="Group">
+    <translate> -2.5 0.5 0 </translate>
+    <rotate> -30 10 -20 </rotate>
+    <scale> 1 0.5 1 </scale>
+    <surface type="Sphere">
+      <shader ref="blue" />
+      <center> 0 0 0 </center>
+      <radius> 1 </radius>
+    </surface>
+</surface>
+
+<surface type="Group">
+  <translate> 0 0.5 0 </translate>
+  <rotate> -30 10 -20 </rotate>
+  <scale> 1 0.5 1 </scale>
+  <surface type="Mesh">
+    <shader ref="blue"/>
+    <data>sphere.msh</data>
+  </surface>
+</surface>
+
+  <surface type="Group">
+    <translate> 2.5 0.5 0 </translate>
+    <rotate> -30 10 -20 </rotate>
+    <surface type="Mesh">
+      <shader ref="blue"/>
+      <data>sphereSquished.msh</data>
+    </surface>
+  </surface>
+
+  <!-- ground -->
+  <surface type="Box">
+    <shader ref="gray" />
+    <minPt>-10 -2 -10</minPt>
+    <maxPt>10 -1 10</maxPt>
+  </surface>
+  
+  <light>
+  	<position>300 1000 50</position>
+  	<intensity>.5 .5 .5</intensity>
+  </light>
+  
+  <light>
+  	<position>30 100 5000</position>
+  	<intensity>.3 .3 .3</intensity>
+  </light>
+</scene>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--  tests nested transforms -->
+<scene>
+  <camera>
+    <viewPoint>-1 6 15</viewPoint>
+    <viewDir>    .3 -1 -3</viewDir>
+    <projNormal>-.3  1  3</projNormal>    
+    <viewUp>0 1 0</viewUp>
+    <projDistance>2</projDistance>
+    <viewWidth>0.5</viewWidth>
+    <viewHeight>0.5</viewHeight>
+  </camera>
+  <image>
+    450 450
+  </image>
+  <shader name="blue" type="Lambertian">
+    <diffuseColor>.05 .2 1</diffuseColor>
+  </shader>
+  <shader name="gray" type="Lambertian">
+    <diffuseColor>0.6 0.6 0.6</diffuseColor>
+  </shader>
+
+  <surface type="Group">
+    <translate> 0 .9 0 </translate>
+    <surface type="Group">
+      <rotate> 0 30 0 </rotate>
+      <surface type="Group">
+        <scale> 1 1 .2 </scale>
+        <surface type="Sphere"> <shader ref="blue" /> 
+          <center>.5 .5 .5</center> <radius>.5</radius> 
+        </surface>
+      </surface>
+    </surface>
+    <surface type="Group">
+      <translate> 1 0 0 </translate>
+      <rotate> 0 30 0 </rotate>
+      <scale> 1 1 .2 </scale>
+      <surface type="Sphere"> <shader ref="blue" /> 
+        <center>.5 .5 .5</center> <radius>.5</radius> 
+      </surface>
+    </surface>
+  </surface>
+
+  <surface type="Group">
+    <translate> 0 2 0 </translate>
+    <scale> 1 .3 1 </scale>
+    <surface type="Group">
+      <rotate> 0 50 0 </rotate>
+      <surface type="Group">
+        <scale> 1 1 .2 </scale>
+        <surface type="Sphere"> <shader ref="blue" /> 
+          <center>.5 .5 .5</center> <radius>.5</radius> 
+        </surface>
+      </surface>
+    </surface>
+    <surface type="Group">
+      <translate> 1 0 0 </translate>
+      <rotate> 0 50 0 </rotate>
+      <scale> 1 1 .2 </scale>
+        <surface type="Sphere"> <shader ref="blue" /> 
+          <center>.5 .5 .5</center> <radius>.5</radius> 
+      </surface>
+    </surface>
+  </surface>
+ 
+  <surface type="Box">
+    <shader ref="gray" />
+    <minPt>-10 -1 -10</minPt>
+    <maxPt>10 0 10</maxPt>
+  </surface>
+  
+  <light>
+  	<position>3 10 5</position>
+  	<intensity>.5 .5 .5</intensity>
+  </light>
+<!--
+  <light>
+  	<position>-10 20 20</position>
+  	<intensity>.5 .5 .5</intensity>
+  </light>
+-->
+</scene>
+

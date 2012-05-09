@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--  A simple ellipsoid, made from a transformed sphere mesh
+ -->
+<scene>
+  <camera>
+    <viewPoint>0 4 15</viewPoint>
+    <viewDir>0 -.8 -3</viewDir>
+    <projNormal>0 .8 3</projNormal>
+    <viewUp>0 1 0</viewUp>
+    <projDistance>2</projDistance>
+    <viewWidth>0.5</viewWidth>
+    <viewHeight>0.5</viewHeight>
+  </camera>
+  <image>
+    450 450
+  </image>
+  <shader name="blue" type="Lambertian">
+    <diffuseColor>.05 .2 1</diffuseColor>
+  </shader>
+  <shader name="gray" type="Lambertian">
+    <diffuseColor>0.6 0.6 0.6</diffuseColor>
+  </shader>
+
+<surface type="Group">
+  <translate> 0 0.5 0 </translate>
+  <rotate> -30 10 -20 </rotate>
+  <scale> 1 0.5 1 </scale>
+  <surface type="Mesh">
+    <shader ref="blue"/>
+    <data>sphere.msh</data>
+  </surface>
+</surface>
+
+  <!-- ground -->
+  <surface type="Box">
+    <shader ref="gray" />
+    <minPt>-10 -2 -10</minPt>
+    <maxPt>10 -1 10</maxPt>
+  </surface>
+  
+  <light>
+  	<position>3 10 5</position>
+  	<intensity>.5 .5 .5</intensity>
+  </light>
+</scene>

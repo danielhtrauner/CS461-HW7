@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+		Low resolution Standford Bunny Mesh.
+ -->
+<scene>
+  <camera>
+	 	<viewPoint>0 4 12</viewPoint>
+	 	<viewDir>0 -.8 -3</viewDir>
+		<projNormal>0 .8 3</projNormal>
+	 	<viewUp>0 1 0</viewUp>
+		<projDistance>2</projDistance>
+		<viewWidth>0.6667</viewWidth>
+		<viewHeight>0.5</viewHeight>
+	</camera>
+	<image>
+	  900 600
+	</image>
+	<shader name="red" type="Lambertian">
+		<diffuseColor>1 .15 .1</diffuseColor>
+	</shader>
+	<shader name="green" type="Lambertian">
+		<diffuseColor>.2 .7 .1</diffuseColor>
+	</shader>
+	<shader name="blue" type="Phong">
+		<diffuseColor>.05 .2 1</diffuseColor>
+		<specularColor>1 1 1</specularColor>
+		<exponent>200</exponent>
+	</shader>
+	<shader name="gray" type="Lambertian">
+		<diffuseColor>0.6 0.6 0.6</diffuseColor>
+	</shader>
+	
+<surface type="Group">
+  <translate>-1 0.65 -1</translate>
+  <rotate>0 90 0</rotate>
+  <surface type="Mesh">
+    <shader ref="red"/>
+    <data>bunny500.msh</data>
+  </surface>
+</surface>
+  
+<surface type="Group">
+  <translate>1 0.65 -1</translate>
+  <surface type="Mesh">
+    <shader ref="green"/>
+    <data>bunny10k.msh</data>
+  </surface>
+</surface>
+  
+<surface type="Group">
+  <translate>0 0 1</translate>
+  <scale>1.2 1.2 1.2</scale>
+  <translate>0 0.857 0</translate>
+  <surface type="Mesh">
+    <shader ref="blue"/>
+    <data>buddha100k.msh</data>
+  </surface>
+</surface>
+  
+  <!-- ground -->
+  <surface type="Box">
+    <shader ref="gray" />
+    <minPt>-10 -1 -10</minPt>
+    <maxPt>10 0 10</maxPt>
+  </surface>
+  
+  <light>
+  	<position>3 10 0</position>
+  	<intensity>.5 .5 .5</intensity>
+  </light>
+  <light>
+  	<position>15 2 0</position>
+  	<intensity>.3 .3 .3</intensity>
+  </light>
+  <light>
+  	<position>0 1 15</position>
+  	<intensity>.2 .2 .2</intensity>
+  </light>
+</scene>
