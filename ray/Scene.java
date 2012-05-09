@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import ray.light.Light;
 import ray.shader.Shader;
 import ray.surface.Surface;
+import ray.math.Matrix4;
 
 
 /**
@@ -24,9 +25,12 @@ public class Scene {
 	public void addLight(Light toAdd) { lights.add(toAdd); }
 	public ArrayList<Light> getLights() { return this.lights; }
 	
-    /** The list of surfaces for the scene. */
+	
+    /** The list of renderable surfaces for the scene. */
     protected ArrayList<Surface> surfaces = new ArrayList<Surface>();
-    public void addSurface(Surface toAdd) { toAdd.addTo(surfaces); }
+    /** The list of non-renderable "container" surfaces (Groups and Meshes) */
+    protected ArrayList<Surface> groups = new ArrayList<Surface>();
+    public void addSurface(Surface toAdd) { toAdd.addTo(surfaces, groups); }
 	
 	/** The list of materials in the scene. */
 	protected ArrayList<Shader> shaders = new ArrayList<Shader>();
@@ -46,6 +50,20 @@ public class Scene {
     protected AABB aabbTree;
 
     /**
+     * Initialize transformation matrices for entire tree hierarchy
+     */
+    public void setTransform() {
+        Matrix4 id = new Matrix4();
+        id.setIdentity();
+        for (Surface s : surfaces) {
+            s.setTransformation(id, id, id);
+        }
+        for (Surface s : groups) {
+            s.setTransformation(id, id, id);
+        }
+    }
+
+    /**
      * Initialize AABB tree from the list of all surfaces in the scene.
      * Send the list to AABB and call createTree.
      */
@@ -53,7 +71,7 @@ public class Scene {
         Surface[] surfaceArray = new Surface[surfaces.size()];
         int count = 0;
         for (Surface s : surfaces) {
-            s.computeBoundingBox();
+            // s.computeBoundingBox();  // now happens in setTransformation()
             surfaceArray[count++] = s;
         }
         AABB.setSurfaces(surfaceArray);

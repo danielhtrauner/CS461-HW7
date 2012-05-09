@@ -9,6 +9,7 @@ import ray.RayTracer;
 import ray.math.Point2;
 import ray.math.Point3;
 import ray.math.Vector3;
+import ray.math.Matrix4;
 
 
 public class Mesh extends Surface{
@@ -197,8 +198,21 @@ public class Mesh extends Surface{
     }
 
     
-    public void computeBoundingBox() {
-		//TODO
+    public void computeBoundingBox() {}
+    
+    public void setTransformation(Matrix4 cMat, Matrix4 cMatInv, Matrix4 cMatTInv) {
+        tMat = cMat;
+        tMatInv = cMatInv;
+        tMatTInv = cMatTInv;
+        for (Triangle triangle : triangles)
+            triangle.setTransformation(cMat, cMatInv, cMatTInv);
+    }
+        
+    // instead of adding the mesh, add the individual triangles to scene
+    public void addTo(ArrayList<Surface> sceneSurfaces, ArrayList<Surface> groups) {
+        for (Triangle triangle : triangles)
+            sceneSurfaces.add(triangle); 
+        groups.add(this); // add the Mesh to groups so that transformations can be applied
+    }
 
-	}
 }

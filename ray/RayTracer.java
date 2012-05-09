@@ -75,6 +75,9 @@ public class RayTracer {
 				Scene scene = (Scene) parser.parse(inputFilename, Scene.class);
 				System.out.printf("Rendering %-25s  ", inputFilename);
 
+                // Propagate transformation matrix through the tree hierarchy
+                scene.setTransform();
+
 				// Initialize AABB tree
                 scene.initializeAABB();
 				
