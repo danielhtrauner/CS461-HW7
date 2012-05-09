@@ -34,6 +34,8 @@ public class Sphere extends Surface {
 	 */
 	public boolean intersect(IntersectionRecord outRecord, Ray rayIn) {
 		 //compute ray-sphere intersection (see book p. 77)
+		rayIn = untransformRay(rayIn);
+
         Vector3 d = rayIn.direction;
         Vector3 ec = new Vector3();
         ec.sub(rayIn.origin, center); // e-c
@@ -62,6 +64,9 @@ public class Sphere extends Surface {
             outRecord.location.set(p);
             outRecord.normal.sub(p, center);
             outRecord.normal.normalize();
+            outRecord.normal.set(transformVector(outRecord.normal));
+            outRecord.normal.normalize();
+            outRecord.location.set(transformPoint(outRecord.location));
             outRecord.surface = this;
             outRecord.t = t;
 

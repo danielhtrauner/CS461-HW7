@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import ray.IntersectionRecord;
 import ray.Ray;
 import ray.math.Point3;
+import ray.math.Vector3;
 import ray.shader.Shader;
 import ray.math.Matrix4;
 
@@ -97,6 +98,37 @@ public abstract class Surface {
         tMatInv.rightMultiply(ray.origin);
         return ray;
     }
+    /**
+     * Transform rayIn using tMat
+     * @param rayIn Input ray
+     * @return tMat * rayIn
+     */
+    public Ray transformRay(Ray rayIn) {
+        Ray ray = new Ray(rayIn.origin, rayIn.direction);
+        ray.start = rayIn.start;
+        ray.end = rayIn.end;
 
+        tMat.rightMultiply(ray.direction);
+        tMat.rightMultiply(ray.origin);
+        return ray;
+    }
+    /**
+     * Transform Vector
+     * @param vector Input vector
+     * @return tMat * vector
+     */
+    public Vector3 transformVector(Vector3 vector) {
+    	tMat.rightMultiply(vector);
+    	return vector;
+    }
+    /**
+     * Transform Point
+     * @param point Input point
+     * @return tMat * point
+     */
+    public Point3 transformPoint(Point3 point) {
+    	tMat.rightMultiply(point);
+    	return point;
+    }
 
 }
