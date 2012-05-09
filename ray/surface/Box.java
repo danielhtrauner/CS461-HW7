@@ -25,17 +25,16 @@ public class Box extends Surface {
 	 * @param ray the ray to intersect
 	 * @return true if the surface intersects the ray
 	 */
-	public boolean intersect(IntersectionRecord outRecord, Ray rayIn) {
+    public boolean intersect(IntersectionRecord outRecord, Ray rayIn) {
         Vector3 d = rayIn.direction;
         Vector3 m1 = new Vector3();
         m1.sub(minPt, rayIn.origin); // minPt - e
         Vector3 m2 = new Vector3();
         m2.sub(maxPt, rayIn.origin); // maxPt - e
-                
+        
         //e.x + t1x * d.x == minPt.x;
         // t1x = (minPt.x - e.x) / d.x
-                
-                
+        
         double t1x = m1.x / d.x, t1y = m1.y / d.y, t1z = m1.z / d.z;
         double t2x = m2.x / d.x, t2y = m2.y / d.y, t2z = m2.z / d.z;
         double minx = Math.min(t1x, t2x);
@@ -44,15 +43,25 @@ public class Box extends Surface {
         double maxx = Math.max(t1x, t2x);
         double maxy = Math.max(t1y, t2y);
         double maxz = Math.max(t1z, t2z);
-                                
+                
         double t1 = Math.max(minx,  Math.max(miny, minz));
         double t2 = Math.min(maxx,  Math.min(maxy, maxz));
-                
+  
         if (t1 > t2)
             return false; // no intersection
 
-        if (t1 < rayIn.start || t1 > rayIn.end) // intersection not in valid range
-            return false;
+        // had to fix this code AGAIN (thanks Duncan!)
+        
+        double nfac = 1.0; // factor for normal direction for incoming vs. outgoing
+
+        if (t1 < rayIn.start || t1 > rayIn.end) { // first intersection not in valid range
+            if (t2 < rayIn.start || t2 > rayIn.end) // second intersection not in valid range
+                return false;
+            else { // interior ray, leaving box
+                t1 = t2;
+                nfac = -1.0;
+            }
+        }
 
         // else intersection at t1
         Point3 p = new Point3(); // intersection point
@@ -78,8 +87,12 @@ public class Box extends Surface {
             else
                 outRecord.normal.set(0, 0, 1);
         }
+        outRecord.normal.scale(nfac);
+        
         return true;
-	}
+    }
+
+
 	
 	/**
 	 * @see Object#toString()
@@ -88,12 +101,13 @@ public class Box extends Surface {
 		return "Box " + minPt + " " + maxPt + " " + shader + " end";
 	}
 
-	public void computeBoundingBox() {
-		maxBound=new Point3(maxPt);
-		minBound=new Point3(minPt);
-		averagePosition=new Point3(maxBound);
-		averagePosition.add(new Vector3(minPt));
-		averagePosition.scale(1/2);
-	}
+    public void computeBoundingBox() {
+        // Compute the bounding box and store the result in
+        // averagePosition, minBound, and maxBound.
+        averagePosition = new Point3((minPt.x + maxPt.x)/2, (minPt.y + maxPt.y)/2, (minPt.z + maxPt.z)/2);
+        minBound = new Point3(minPt);
+        maxBound = new Point3(maxPt);
+    }
+
 }
 

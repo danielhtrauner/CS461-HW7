@@ -78,16 +78,16 @@ public class Sphere extends Surface {
 		return "sphere " + center + " " + radius + " " + shader + " end";
 	}
 
-	@Override
-	public void computeBoundingBox() {
+    public void computeBoundingBox() {
+        // Compute the bounding box and store the result in
+        // averagePosition, minBound, and maxBound.
+        averagePosition = new Point3(center);
+        minBound = new Point3(center);
+        maxBound = new Point3(center);
+        Vector3 offs = new Vector3(radius, radius, radius);
+        minBound.sub(offs);
+        maxBound.add(offs);
+    }
 
-		maxBound = new Point3(center);
-		minBound = new Point3(center);
-		
-		maxBound.add(new Vector3(radius, radius, radius));
-		minBound.sub(new Vector3(radius, radius, radius));
-				
-		averagePosition=new Point3(center);
-	}
 
 }

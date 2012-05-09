@@ -154,33 +154,35 @@ public class Triangle extends Surface {
     public String toString() {
         return "Triangle ";
     }
+    public static double min3(double a, double b, double c) {
+        return Math.min(a,  Math.min(b, c));
+    }
 
-	public void computeBoundingBox() {
-		
-		maxBound = new Point3(Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY);
-		minBound = new Point3(Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY);
-		
-		maxBound.x = Math.max(owner.getVertex(index[0]).x, owner.getVertex(index[1]).x);
-		maxBound.x = Math.max(maxBound.x, owner.getVertex(index[2]).x);
-		
-		maxBound.y = Math.max(owner.getVertex(index[0]).y, owner.getVertex(index[1]).y);
-		maxBound.y = Math.max(maxBound.y, owner.getVertex(index[2]).y);
-		
-		maxBound.z = Math.max(owner.getVertex(index[0]).z, owner.getVertex(index[1]).z);
-		maxBound.z = Math.max(maxBound.z, owner.getVertex(index[2]).z);
-		
-		minBound.x = Math.min(owner.getVertex(index[0]).x, owner.getVertex(index[1]).x);
-		minBound.x = Math.min(minBound.x, owner.getVertex(index[2]).x);
-		
-		minBound.y = Math.min(owner.getVertex(index[0]).y, owner.getVertex(index[1]).y);
-		minBound.y = Math.min(minBound.y, owner.getVertex(index[2]).y);
-		
-		minBound.z = Math.min(owner.getVertex(index[0]).z, owner.getVertex(index[1]).z);
-		minBound.z = Math.min(minBound.z, owner.getVertex(index[2]).z);
+    public static double max3(double a, double b, double c) {
+        return Math.max(a,  Math.max(b, c));
+    }
 
-		averagePosition=new Point3();
-		averagePosition.x = (owner.getVertex(index[0]).x+owner.getVertex(index[1]).x+owner.getVertex(index[2]).x)/3;
-		averagePosition.y = (owner.getVertex(index[0]).y+owner.getVertex(index[1]).y+owner.getVertex(index[2]).y)/3;
-		averagePosition.z = (owner.getVertex(index[0]).z+owner.getVertex(index[1]).z+owner.getVertex(index[2]).z)/3;
-	}
+    public static double avg3(double a, double b, double c) {
+        return (a + b + c) / 3.0;
+    }
+
+    public void computeBoundingBox() {
+        // Compute the bounding box and store the result in
+        // averagePosition, minBound, and maxBound.
+        Point3 v0 = owner.getVertex(index[0]);
+        Point3 v1 = owner.getVertex(index[1]);
+        Point3 v2 = owner.getVertex(index[2]);
+        tMat.rightMultiply(v0);
+        tMat.rightMultiply(v1);
+        tMat.rightMultiply(v2);
+        averagePosition = new Point3(avg3(v0.x, v1.x, v2.x),
+                                     avg3(v0.y, v1.y, v2.y),
+                                     avg3(v0.z, v1.z, v2.z));
+        minBound = new Point3(min3(v0.x, v1.x, v2.x),
+                              min3(v0.y, v1.y, v2.y),
+                              min3(v0.z, v1.z, v2.z));
+        maxBound = new Point3(max3(v0.x, v1.x, v2.x),
+                              max3(v0.y, v1.y, v2.y),
+                              max3(v0.z, v1.z, v2.z));
+    }
 }
