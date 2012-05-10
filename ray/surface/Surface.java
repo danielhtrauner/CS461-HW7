@@ -117,6 +117,7 @@ public abstract class Surface {
      * @param vector Input vector
      */
     public void transformVector(Vector3 vector) {
+    	vector.normalize();
     	tMatTInv.rightMultiply(vector);
     	vector.normalize();
     }
@@ -131,9 +132,9 @@ public abstract class Surface {
      * Transform Bounding Box
      */
     public void transformBoundingBox() {
+    	transformPoint(averagePosition);
     	transformPoint(minBound);
     	transformPoint(maxBound);
-    	transformPoint(averagePosition);
     }
 
 }
