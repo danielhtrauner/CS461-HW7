@@ -33,6 +33,8 @@ public class Cylinder extends Surface {
 	 * @return true if the surface intersects the ray
 	 */
 	public boolean intersect(IntersectionRecord outRecord, Ray rayIn) {
+		rayIn = untransformRay(rayIn);
+
 		 boolean inters = false;
 	        double tw = Double.POSITIVE_INFINITY; // t value for intersection with cylinder wall
 	        double te = Double.POSITIVE_INFINITY; // t value for intersection with end caps
@@ -106,6 +108,8 @@ public class Cylinder extends Surface {
 	            } else { // intersection with endcap
 	                outRecord.normal.set(0, 0, dir);
 	            }
+	            transformVector(outRecord.normal);
+	            transformPoint(outRecord.location);
 	            return true;
 	        }
         
@@ -130,6 +134,7 @@ public class Cylinder extends Surface {
         Vector3 offs = new Vector3(radius, radius, height);
         minBound.sub(offs);
         maxBound.add(offs);
+        transformBoundingBox();
     }
 
 }

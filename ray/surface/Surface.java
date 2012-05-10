@@ -115,20 +115,25 @@ public abstract class Surface {
     /**
      * Transform Vector
      * @param vector Input vector
-     * @return tMat * vector
      */
-    public Vector3 transformVector(Vector3 vector) {
-    	tMat.rightMultiply(vector);
-    	return vector;
+    public void transformVector(Vector3 vector) {
+    	tMatTInv.rightMultiply(vector);
+    	vector.normalize();
     }
     /**
      * Transform Point
      * @param point Input point
-     * @return tMat * point
      */
-    public Point3 transformPoint(Point3 point) {
+    public void transformPoint(Point3 point) {
     	tMat.rightMultiply(point);
-    	return point;
+    }
+    /**
+     * Transform Bounding Box
+     */
+    public void transformBoundingBox() {
+    	transformPoint(minBound);
+    	transformPoint(maxBound);
+    	transformPoint(averagePosition);
     }
 
 }

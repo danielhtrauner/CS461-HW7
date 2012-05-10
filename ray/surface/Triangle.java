@@ -56,6 +56,8 @@ public class Triangle extends Surface {
      * @return true if the surface intersects the ray
      */
     public boolean intersect(IntersectionRecord outRecord, Ray rayIn) {    	
+		rayIn = untransformRay(rayIn);
+
     	Vector3 d = new Vector3(rayIn.direction);
     	Point3 e = new Point3(rayIn.origin);
 
@@ -147,7 +149,9 @@ public class Triangle extends Surface {
     	rayIn.evaluate(outRecord.location, t);
     	outRecord.surface = this;
     	outRecord.t = t;
-    	
+        transformVector(outRecord.normal);
+        transformPoint(outRecord.location);
+
     	return true;
     } 
     
@@ -169,6 +173,7 @@ public class Triangle extends Surface {
     public void computeBoundingBox() {
         // Compute the bounding box and store the result in
         // averagePosition, minBound, and maxBound.
+
         Point3 v0 = owner.getVertex(index[0]);
         Point3 v1 = owner.getVertex(index[1]);
         Point3 v2 = owner.getVertex(index[2]);

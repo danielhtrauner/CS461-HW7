@@ -26,6 +26,8 @@ public class Box extends Surface {
 	 * @return true if the surface intersects the ray
 	 */
     public boolean intersect(IntersectionRecord outRecord, Ray rayIn) {
+		rayIn = untransformRay(rayIn);
+
         Vector3 d = rayIn.direction;
         Vector3 m1 = new Vector3();
         m1.sub(minPt, rayIn.origin); // minPt - e
@@ -88,6 +90,8 @@ public class Box extends Surface {
                 outRecord.normal.set(0, 0, 1);
         }
         outRecord.normal.scale(nfac);
+        transformVector(outRecord.normal);
+        transformPoint(outRecord.location);
         
         return true;
     }
@@ -107,6 +111,7 @@ public class Box extends Surface {
         averagePosition = new Point3((minPt.x + maxPt.x)/2, (minPt.y + maxPt.y)/2, (minPt.z + maxPt.z)/2);
         minBound = new Point3(minPt);
         maxBound = new Point3(maxPt);
+        transformBoundingBox();
     }
 
 }

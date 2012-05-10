@@ -64,11 +64,10 @@ public class Sphere extends Surface {
             outRecord.location.set(p);
             outRecord.normal.sub(p, center);
             outRecord.normal.normalize();
-            outRecord.normal.set(transformVector(outRecord.normal));
-            outRecord.normal.normalize();
-            outRecord.location.set(transformPoint(outRecord.location));
             outRecord.surface = this;
             outRecord.t = t;
+            transformVector(outRecord.normal);
+            transformPoint(outRecord.location);
 
             return true;
         }
@@ -92,6 +91,7 @@ public class Sphere extends Surface {
         Vector3 offs = new Vector3(radius, radius, radius);
         minBound.sub(offs);
         maxBound.add(offs);
+        transformBoundingBox();
     }
 
 
