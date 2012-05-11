@@ -132,6 +132,29 @@ public abstract class Surface {
      * Transform Bounding Box
      */
     public void transformBoundingBox() {
+    	
+    	Point3 frontRightTop = new Point3(maxBound.x, maxBound.y, minBound.z);
+    	Point3 frontRightBottom = new Point3(maxBound.x, minBound.y, minBound.z);
+    	Point3 frontLeftTop = new Point3(minBound.x, maxBound.y, minBound.z);
+    	Point3 frontLeftBottom = new Point3(minBound);
+    	
+    	Point3 backRightTop = new Point3(maxBound);
+    	Point3 backRightBottom = new Point3(maxBound.x, maxBound.y, minBound.z);
+    	Point3 backLeftTop = new Point3(minBound.x, maxBound.y, maxBound.z);
+    	Point3 backLeftBottom = new Point3(minBound.x, minBound.y, maxBound.z);
+    	
+    	transformPoint(frontRightTop);
+    	transformPoint(frontRightBottom);
+    	transformPoint(frontLeftTop);
+    	transformPoint(frontLeftBottom);
+    	
+    	transformPoint(backRightTop);
+    	transformPoint(backRightBottom);
+    	transformPoint(backLeftTop);
+    	transformPoint(backLeftBottom);
+    	
+    	//re-calculate min and max points and average position
+    	
     	transformPoint(averagePosition);
     	transformPoint(minBound);
     	transformPoint(maxBound);
