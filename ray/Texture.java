@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.nio.*;
 
 import javax.imageio.ImageIO;
-import javax.vecmath.Color3f;
-import javax.vecmath.Vector2f;
+import ray.math.Color;
+import ray.math.Point2;
 
 /**
  * This class holds all of the information necessary to describe texture data.
@@ -76,7 +76,7 @@ public class Texture {
      * @param p The 2D texture coordinate.
      * @param cOut The result of sampling the texture.
      */
-    public void sample(Vector2f p, Color3f cOut) {
+    public void sample(Point2 p, Color cOut) {
 
         int ix = (int) (p.x * nx + 0.5);
         int iy = (int) (p.y * ny + 0.5);

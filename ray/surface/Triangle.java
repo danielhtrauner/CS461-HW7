@@ -5,6 +5,7 @@ import javax.vecmath.Matrix3d;
 
 import ray.IntersectionRecord;
 import ray.Ray;
+import ray.math.Color;
 import ray.math.Point3;
 import ray.math.Vector3;
 import ray.shader.Shader;
@@ -149,6 +150,10 @@ public class Triangle extends Surface {
     	rayIn.evaluate(outRecord.location, t);
     	outRecord.surface = this;
     	outRecord.t = t;
+    	if(owner.isTextured()) {
+    		outRecord.textureColor=new Color();
+    		owner.texture.sample(owner.getTexcoords(index[0]), outRecord.textureColor);
+    	}
         transformVector(outRecord.normal);
         transformPoint(outRecord.location);
 

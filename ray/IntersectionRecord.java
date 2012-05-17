@@ -1,6 +1,7 @@
 package ray;
 
 //import ray.math.Point2;
+import ray.math.Color;
 import ray.math.Point3;
 import ray.math.Vector3;
 import ray.surface.Surface;
@@ -18,6 +19,8 @@ public class IntersectionRecord {
 
   /** The normal of the surface at the intersection location. */
   public final Vector3 normal = new Vector3();
+  
+  public Color textureColor = null;
   
   /** A reference to the actual surface. */
   public Surface surface = null;
