@@ -38,6 +38,7 @@ public class IntersectionRecord {
     location.set(inRecord.location);
     normal.set(inRecord.normal);
     surface = inRecord.surface;
+    textureColor = inRecord.textureColor;
     t = inRecord.t;
 
   }

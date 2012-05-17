@@ -6,7 +6,9 @@ import javax.vecmath.Matrix3d;
 import ray.IntersectionRecord;
 import ray.Ray;
 import ray.math.Color;
+import ray.math.Point2;
 import ray.math.Point3;
+import ray.math.Vector2;
 import ray.math.Vector3;
 import ray.shader.Shader;
 
@@ -133,8 +135,8 @@ public class Triangle extends Surface {
         	normal.normalize();
         	
         	outRecord.normal.set(normal);
-        }
-    	
+        }        
+        
     	if(t<rayIn.start||t>rayIn.end) {
     		return false;
     	}
@@ -151,8 +153,21 @@ public class Triangle extends Surface {
     	outRecord.surface = this;
     	outRecord.t = t;
     	if(owner.isTextured()) {
+    		Point2 coords=new Point2();
+            Point2 ta = owner.getTexcoords(index[0]);
+            Point2 tb = owner.getTexcoords(index[1]);
+            Point2 tc = owner.getTexcoords(index[2]);
+
+        	ta.scale(1-beta-gamma);
+        	tb.scale(beta);
+        	tc.scale(gamma);
+        	
+        	coords.set(ta);
+        	coords.add(new Vector2(tb));
+        	coords.add(new Vector2(tc));
+        	
     		outRecord.textureColor=new Color();
-    		owner.texture.sample(owner.getTexcoords(index[0]), outRecord.textureColor);
+    		owner.texture.sample(coords, outRecord.textureColor);
     		outRecord.textureColor.clamp(0, 1);
     	}
         transformVector(outRecord.normal);

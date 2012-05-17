@@ -2,6 +2,8 @@ package ray;
 
 import java.util.Arrays;
 import java.util.Comparator;
+
+import ray.math.Color;
 import ray.math.Point3;
 import ray.math.Vector3;
 import ray.surface.Surface;
@@ -151,6 +153,9 @@ public class AABB {
                     ret = true;
                     ray.end = tmp.t;
                     if(outRecord != null)
+                    	if(tmp.textureColor!=null) 
+                    		outRecord.textureColor=new Color(tmp.textureColor);
+                    	//System.out.println(tmp.textureColor);
                         outRecord.set(tmp);
                 }
             }

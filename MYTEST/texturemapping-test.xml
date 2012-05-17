@@ -8,12 +8,12 @@
 	    <viewDir>-6.4 -4 -8</viewDir>
 	    <projNormal>6.4 4 8</projNormal>
 	    <viewUp>0 1 0</viewUp>
-	    <projDistance>0.5</projDistance>
+	    <projDistance>0.8</projDistance>
 	    <viewWidth>0.6</viewWidth>
 	    <viewHeight>0.4</viewHeight>
 	  </camera>
 	  <image>
-	    768 432
+	    1280 800
 	  </image>
 	
 	  <shader name="redglazed" type="Glazed">
@@ -40,8 +40,8 @@
 	
 	
 	  <surface type="Mesh">
-	    <shader ref="gray"/>
-	    <data>ship2.msh</data>
+	    <shader ref="redglazed"/>
+	    <data>ship1.msh</data>
 	  </surface>
 	
 	  <surface type="Box">
@@ -52,7 +52,7 @@
 	  
 	  <light>
 	  	<position>3 10 5</position>
-	  	<intensity>.5 .5 .5</intensity>
+	  	<intensity>.8 .8 .8</intensity>
 	  </light>
 </scene>
 

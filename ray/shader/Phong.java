@@ -52,11 +52,13 @@ public class Phong extends Shader {
                         
             // Lambertian component
             double ni = Math.max(0, record.normal.dot(l)); // dot product of surf normal and light dir
-            Color c = new Color(diffuseColor);
-            c.scale(li.intensity);  // elt-wise product of color channels of diffuse obj color and light color
+            Color c = new Color();
             if(record.textureColor!=null) {
-            	outColor.scale(record.textureColor);
+                c = new Color(record.textureColor);
+            } else {
+                c = new Color(diffuseColor);
             }
+            c.scale(li.intensity);  // elt-wise product of color channels of diffuse obj color and light color
 
             outColor.scaleAdd(ni, c);
                         
