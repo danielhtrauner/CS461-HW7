@@ -1,11 +1,13 @@
 package ray.surface;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import ray.IntersectionRecord;
 import ray.Ray;
 import ray.RayTracer;
+import ray.Texture;
 import ray.math.Point2;
 import ray.math.Point3;
 import ray.math.Vector3;
@@ -25,6 +27,7 @@ public class Mesh extends Surface{
     protected float[] verts;
     protected float[] texcoords;
   
+    protected Texture texture;
     /**
      * Default constructor creates an empty mesh
      */
@@ -107,7 +110,9 @@ public class Mesh extends Surface{
     public void setData(String fileName) {
 
         readMesh(this, RayTracer.getTestFolderPath() + fileName);
-
+        if(File.exists(RayTracer.getTestFolderPath()+fileName)) {
+        	
+        }
     }
 
   
