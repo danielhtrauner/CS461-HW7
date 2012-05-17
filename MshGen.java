@@ -40,11 +40,11 @@ private Mode mode;
   
   public MshGen(){
 	 try {
-		new MshGen("/Users/danielhtrauner/Desktop/CS461-HW7/OBJ/Temple.obj");
+		new MshGen("/Users/danielhtrauner/Desktop/CS461-HW7/OBJ/Spiderweb Chair.obj");
 	} catch (FileNotFoundException e) {
 		e.printStackTrace();
 	}
-	 fFile = new File("/Users/danielhtrauner/Desktop/CS461-HW7/OBJ/Temple.obj");
+	 fFile = new File("/Users/danielhtrauner/Desktop/CS461-HW7/OBJ/Spiderweb Chair.obj");
   }
   
   public final void processLineByLine() throws FileNotFoundException {
@@ -121,7 +121,7 @@ private Mode mode;
   protected void writeToFile(){
 	  FileWriter fstream;
 	try {
-		fstream = new FileWriter("/Users/danielhtrauner/Desktop/CS461-HW7/MSH/temple.msh");
+		fstream = new FileWriter("/Users/danielhtrauner/Desktop/CS461-HW7/MSH/spiderwebchair.msh");
 		  BufferedWriter out = new BufferedWriter(fstream);
 		  out.write(num_v+"\n");
 		  out.write(num_f+"\n");
