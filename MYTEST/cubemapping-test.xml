@@ -41,7 +41,7 @@
 	
 	  <surface type="Mesh">
 	    <shader ref="redglazed"/>
-	    <data>ship2.msh</data>
+	    <data>ship1.msh</data>
 	  </surface>
 	
 	  <surface type="Box">
