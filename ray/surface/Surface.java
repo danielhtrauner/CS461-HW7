@@ -117,6 +117,7 @@ public abstract class Surface {
      * @param vector Input vector
      */
     public void transformVector(Vector3 vector) {
+    	vector.normalize();
     	tMatTInv.rightMultiply(vector);
     	vector.normalize();
     }
@@ -131,9 +132,81 @@ public abstract class Surface {
      * Transform Bounding Box
      */
     public void transformBoundingBox() {
-    	transformPoint(minBound);
-    	transformPoint(maxBound);
-    	transformPoint(averagePosition);
+    	
+    	Point3 frontRightTop = new Point3(maxBound.x, maxBound.y, minBound.z);
+    	Point3 frontRightBottom = new Point3(maxBound.x, minBound.y, minBound.z);
+    	Point3 frontLeftTop = new Point3(minBound.x, maxBound.y, minBound.z);
+    	Point3 frontLeftBottom = new Point3(minBound);
+    	
+    	Point3 backRightTop = new Point3(maxBound);
+    	Point3 backRightBottom = new Point3(maxBound.x, maxBound.y, minBound.z);
+    	Point3 backLeftTop = new Point3(minBound.x, maxBound.y, maxBound.z);
+    	Point3 backLeftBottom = new Point3(minBound.x, minBound.y, maxBound.z);
+    	
+    	transformPoint(frontRightTop);
+    	transformPoint(frontRightBottom);
+    	transformPoint(frontLeftTop);
+    	transformPoint(frontLeftBottom);
+    	
+    	transformPoint(backRightTop);
+    	transformPoint(backRightBottom);
+    	transformPoint(backLeftTop);
+    	transformPoint(backLeftBottom);	
+    	
+    	maxBound.x = Math.max(frontRightTop.x, frontRightBottom.x);
+    	maxBound.x = Math.max(maxBound.x, frontLeftTop.x);
+    	maxBound.x = Math.max(maxBound.x, frontLeftBottom.x);
+    	maxBound.x = Math.max(maxBound.x, backRightTop.x);
+    	maxBound.x = Math.max(maxBound.x, backRightBottom.x);
+    	maxBound.x = Math.max(maxBound.x, backLeftTop.x);
+    	maxBound.x = Math.max(maxBound.x, backLeftBottom.x);
+    	
+    	maxBound.y = Math.max(frontRightTop.y, frontRightBottom.y);
+    	maxBound.y = Math.max(maxBound.y, frontLeftTop.y);
+    	maxBound.y = Math.max(maxBound.y, frontLeftBottom.y);
+    	maxBound.y = Math.max(maxBound.y, backRightTop.y);
+    	maxBound.y = Math.max(maxBound.y, backRightBottom.y);
+    	maxBound.y = Math.max(maxBound.y, backLeftTop.y);
+    	maxBound.y = Math.max(maxBound.y, backLeftBottom.y);
+
+    	maxBound.z = Math.max(frontRightTop.z, frontRightBottom.z);
+    	maxBound.z = Math.max(maxBound.z, frontLeftTop.z);
+    	maxBound.z = Math.max(maxBound.z, frontLeftBottom.z);
+    	maxBound.z = Math.max(maxBound.z, backRightTop.z);
+    	maxBound.z = Math.max(maxBound.z, backRightBottom.z);
+    	maxBound.z = Math.max(maxBound.z, backLeftTop.z);
+    	maxBound.z = Math.max(maxBound.z, backLeftBottom.z);
+
+    	minBound.x = Math.min(frontRightTop.x, frontRightBottom.x);
+    	minBound.x = Math.min(minBound.x, frontLeftTop.x);
+    	minBound.x = Math.min(minBound.x, frontLeftBottom.x);
+    	minBound.x = Math.min(minBound.x, backRightTop.x);
+    	minBound.x = Math.min(minBound.x, backRightBottom.x);
+    	minBound.x = Math.min(minBound.x, backLeftTop.x);
+    	minBound.x = Math.min(minBound.x, backLeftBottom.x);
+    	
+    	minBound.y = Math.min(frontRightTop.y, frontRightBottom.y);
+    	minBound.y = Math.min(minBound.y, frontLeftTop.y);
+    	minBound.y = Math.min(minBound.y, frontLeftBottom.y);
+    	minBound.y = Math.min(minBound.y, backRightTop.y);
+    	minBound.y = Math.min(minBound.y, backRightBottom.y);
+    	minBound.y = Math.min(minBound.y, backLeftTop.y);
+    	minBound.y = Math.min(minBound.y, backLeftBottom.y);
+
+    	minBound.z = Math.min(frontRightTop.z, frontRightBottom.z);
+    	minBound.z = Math.min(minBound.z, frontLeftTop.z);
+    	minBound.z = Math.min(minBound.z, frontLeftBottom.z);
+    	minBound.z = Math.min(minBound.z, backRightTop.z);
+    	minBound.z = Math.min(minBound.z, backRightBottom.z);
+    	minBound.z = Math.min(minBound.z, backLeftTop.z);
+    	minBound.z = Math.min(minBound.z, backLeftBottom.x);
+    	
+    	Point3 tmp1 = new Point3(minBound);
+    	Vector3 tmp2 = new Vector3(maxBound);
+    	tmp1.add(tmp2);
+    	tmp1.scale(0.5);
+    	
+    	averagePosition = tmp1;
     }
 
 }

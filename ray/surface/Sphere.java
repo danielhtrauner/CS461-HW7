@@ -58,7 +58,7 @@ public class Sphere extends Surface {
                 t = t2;
             if (t > rayIn.end || t == Double.POSITIVE_INFINITY)
                 return false;
-                        
+ 
             Point3 p = new Point3(); // intersection point
             rayIn.evaluate(p, t);
             outRecord.location.set(p);
@@ -91,6 +91,7 @@ public class Sphere extends Surface {
         Vector3 offs = new Vector3(radius, radius, radius);
         minBound.sub(offs);
         maxBound.add(offs);
+        
         transformBoundingBox();
     }
 

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--  Bunny-mesh (500 polygons, with normals)
+ -->
+<scene>
+	<samples>1</samples>
+	  <camera>
+	    <viewPoint>6.6 4 10</viewPoint>
+	    <viewDir>-6.4 -4 -8</viewDir>
+	    <projNormal>6.4 4 8</projNormal>
+	    <viewUp>0 1 0</viewUp>
+	    <projDistance>0.5</projDistance>
+	    <viewWidth>0.6</viewWidth>
+	    <viewHeight>0.4</viewHeight>
+	  </camera>
+	  <image>
+	    768 432
+	  </image>
+	
+	  <shader name="redglazed" type="Glazed">
+	    <refractiveIndex>1.5</refractiveIndex>
+	    <substrate type="Lambertian">
+	      <diffuseColor>.9 0 0</diffuseColor>
+	    </substrate>
+	  </shader>
+	  
+	  <shader name="whiteglazed" type="Glazed">
+	    <refractiveIndex>25</refractiveIndex>
+	     <substrate type="Lambertian">
+	       <diffuseColor>1 1 1</diffuseColor>
+	    </substrate>
+	  </shader>
+	  
+	  <shader name="gray" type="Lambertian">
+	    <diffuseColor>0.6 0.6 0.6</diffuseColor>
+	  </shader>
+	  
+	  <shader name="green" type="Lambertian">
+	    <diffuseColor>0.2 1 0.2</diffuseColor>
+	  </shader>
+	
+	
+	  <surface type="Mesh">
+	    <shader ref="redglazed"/>
+	    <data>ship2.msh</data>
+	  </surface>
+	
+	  <surface type="Box">
+	  	<minpt>-5 -1 -20</minpt>
+	  	<maxpt>10 -0.9 10</maxpt>
+	  	<shader ref="whiteglazed"/>
+	  </surface>
+	  
+	  <light>
+	  	<position>3 10 5</position>
+	  	<intensity>.5 .5 .5</intensity>
+	  </light>
+</scene>
+
