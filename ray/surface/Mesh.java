@@ -4,10 +4,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+
 import ray.IntersectionRecord;
 import ray.Ray;
 import ray.RayTracer;
 import ray.Texture;
+import ray.math.Color;
 import ray.math.Point2;
 import ray.math.Point3;
 import ray.math.Vector3;
@@ -26,8 +28,8 @@ public class Mesh extends Surface{
     protected float[] normals; // may be null
     protected float[] verts;
     protected float[] texcoords;
-  
-    protected Texture texture;
+    protected Color[] texcolors;
+    protected Texture texture=null;
     /**
      * Default constructor creates an empty mesh
      */
@@ -71,7 +73,14 @@ public class Mesh extends Surface{
     public Point2 getTexcoords(int index) {
         return new Point2(texcoords[2*index], texcoords[2*index+1]);
     }
-    
+    public Color getTexcolors(double x, double y) {
+    	Color c = new Color();
+    	texture.sample(new Point2(x,y), c);
+    	return c;
+    }
+    public boolean isTextured() {
+    	return texture!=null;
+    }
     /**
      * Sets the mesh data and builds the triangle array.
      * @param verts the vertices
@@ -110,8 +119,10 @@ public class Mesh extends Surface{
     public void setData(String fileName) {
 
         readMesh(this, RayTracer.getTestFolderPath() + fileName);
-        if(File.exists(RayTracer.getTestFolderPath()+fileName)) {
-        	
+        if(existsTexture()) {
+            File textureFile = new File(RayTracer.getTestFolderPath()+fileName.substring(0, -4)+".png");
+            System.out.print(textureFile.getAbsolutePath());
+        	texture = new Texture(textureFile);
         }
     }
 
