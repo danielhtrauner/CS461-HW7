@@ -120,8 +120,10 @@ public class Mesh extends Surface{
 
         readMesh(this, RayTracer.getTestFolderPath() + fileName);
         if(existsTexture()) {
-            File textureFile = new File(RayTracer.getTestFolderPath()+fileName.substring(0, -4)+".png");
-            System.out.print(textureFile.getAbsolutePath());
+        	String str = RayTracer.getTestFolderPath()+fileName;
+        	str.substring(0, str.lastIndexOf('.'));
+        	str+=".png";
+            File textureFile = new File(str);
         	texture = new Texture(textureFile);
         }
     }

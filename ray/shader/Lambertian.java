@@ -43,6 +43,12 @@ public class Lambertian extends Shader {
             l.normalize();
             double ni = Math.max(0, record.normal.dot(l)); // dot product of surf normal and light dir
             Color c = new Color(diffuseColor);
+            System.out.println(record.textureColor);
+            if(record.textureColor!=null) {
+            	System.out.println("WTF");
+            	c.scale(record.textureColor);
+            }
+
             c.scale(li.intensity);  // elt-wise product of color channels of obj color and light color
             outColor.scaleAdd(ni, c);
         }

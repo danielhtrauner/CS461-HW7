@@ -40,8 +40,8 @@
 	
 	
 	  <surface type="Mesh">
-	    <shader ref="redglazed"/>
-	    <data>ship1.msh</data>
+	    <shader ref="gray"/>
+	    <data>ship2.msh</data>
 	  </surface>
 	
 	  <surface type="Box">

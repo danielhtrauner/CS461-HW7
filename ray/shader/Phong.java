@@ -54,6 +54,10 @@ public class Phong extends Shader {
             double ni = Math.max(0, record.normal.dot(l)); // dot product of surf normal and light dir
             Color c = new Color(diffuseColor);
             c.scale(li.intensity);  // elt-wise product of color channels of diffuse obj color and light color
+            if(record.textureColor!=null) {
+            	outColor.scale(record.textureColor);
+            }
+
             outColor.scaleAdd(ni, c);
                         
             // specular component
@@ -67,7 +71,8 @@ public class Phong extends Shader {
             c.set(specularColor);
             c.scale(li.intensity);  // elt-wise product of color channels of specular obj color and light color
             outColor.scaleAdd(nh, c);
-                        
+                 
+
         }
 		
 	}

@@ -76,11 +76,15 @@ public class Glazed extends Shader {
 				
 				// compute substrate contribution (call substrate.shade(...))
 				substrate.shade(substrateColor, scene, lights, toEye, record, depth, contribution, internal);
-				
+	            if(record.textureColor!=null) {
+	            	reflectionColor.scale(record.textureColor);
+	            }
 				reflectionColor.scale(reflection);
 				substrateColor.scale(1-reflection);
 				reflectionColor.add(substrateColor);
 				outColor.set(reflectionColor);
+
+
 	    	}
 	    	
     }

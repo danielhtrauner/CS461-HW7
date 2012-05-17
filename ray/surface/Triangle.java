@@ -153,6 +153,7 @@ public class Triangle extends Surface {
     	if(owner.isTextured()) {
     		outRecord.textureColor=new Color();
     		owner.texture.sample(owner.getTexcoords(index[0]), outRecord.textureColor);
+    		outRecord.textureColor.clamp(0, 1);
     	}
         transformVector(outRecord.normal);
         transformPoint(outRecord.location);
