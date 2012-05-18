@@ -16,10 +16,10 @@ private Mode mode;
   private int normal_i = 0;
   private int face_i = 0;
   private int texture_i = 0;
-  private float[] vertices = new float[200000];
-  private float[] normals = new float[200000];
-  private float[] textures = new float[200000];
-  private int[] faces = new int[200000];
+  private float[] vertices = new float[2000000];
+  private float[] normals = new float[2000000];
+  private float[] textures = new float[2000000];
+  private int[] faces = new int[2000000];
 
   
 	public static final void main(String[] args) {
@@ -40,11 +40,11 @@ private Mode mode;
   
   public MshGen(){
 	 try {
-		new MshGen("/Users/danielhtrauner/Desktop/CS461-HW7/OBJ/Spiderweb Chair.obj");
+		new MshGen("/home/dtrauner/Download/thinker_complete.obj");
 	} catch (FileNotFoundException e) {
 		e.printStackTrace();
 	}
-	 fFile = new File("/Users/danielhtrauner/Desktop/CS461-HW7/OBJ/Spiderweb Chair.obj");
+	 fFile = new File("/home/dtrauner/Download/thinker_complete.obj");
   }
   
   public final void processLineByLine() throws FileNotFoundException {
@@ -121,7 +121,7 @@ private Mode mode;
   protected void writeToFile(){
 	  FileWriter fstream;
 	try {
-		fstream = new FileWriter("/Users/danielhtrauner/Desktop/CS461-HW7/MSH/spiderwebchair.msh");
+		fstream = new FileWriter("/home/dtrauner/Download/thinker_complete.msh");
 		  BufferedWriter out = new BufferedWriter(fstream);
 		  out.write(num_v+"\n");
 		  out.write(num_f+"\n");
