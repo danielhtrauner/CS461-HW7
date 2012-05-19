@@ -40,11 +40,11 @@ private Mode mode;
   
   public MshGen(){
 	 try {
-		new MshGen("/home/dtrauner/Download/thinker_complete.obj");
+		new MshGen("/home/dtrauner/Download/plaque.obj");
 	} catch (FileNotFoundException e) {
 		e.printStackTrace();
 	}
-	 fFile = new File("/home/dtrauner/Download/thinker_complete.obj");
+	 fFile = new File("/home/dtrauner/Download/plaque.obj");
   }
   
   public final void processLineByLine() throws FileNotFoundException {
@@ -121,7 +121,7 @@ private Mode mode;
   protected void writeToFile(){
 	  FileWriter fstream;
 	try {
-		fstream = new FileWriter("/home/dtrauner/Download/thinker_complete.msh");
+		fstream = new FileWriter("/home/dtrauner/Download/plaque.msh");
 		  BufferedWriter out = new BufferedWriter(fstream);
 		  out.write(num_v+"\n");
 		  out.write(num_f+"\n");
