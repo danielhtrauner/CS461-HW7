@@ -2,7 +2,7 @@
 <!--	Bunny-mesh (500 polygons, with normals)
  -->
 <scene>
-	<samples>1</samples>
+	<samples>25</samples>
 		<camera>
 			<viewPoint>0 50 500</viewPoint>
 			<viewDir>0 -1 -10</viewDir>
@@ -13,7 +13,7 @@
 			<viewHeight>9</viewHeight>
 		</camera>
 		<image>
-			960 540
+			1920 1080
 		</image>
 	
 		<shader name="redglazed" type="Glazed">
@@ -61,16 +61,19 @@
 			<data>thinker.msh</data>
 		</surface>
 	</surface>
+	
 	<!-- Plaque -->
-<!-- 	<surface type="Group">
+	<surface type="Group">
 	    <translate>0 80 -200</translate>
 	    <rotate>0 -90 0</rotate>
+	    <scale>1.5 1.5 1.5</scale>
 		<surface type="Mesh">
 			<shader ref="redglazed"/>
 			<data>plaque.msh</data>
 		</surface>
 	</surface>
- -->	<!-- Floor -->
+	
+	<!-- Floor -->
 	<surface type="Box">
 		<minpt>-200 -100 -200</minpt>
 		<maxpt>200 -90 200</maxpt>
@@ -117,6 +120,7 @@
 		<position>0 60 600</position>
 		<intensity>.7 .7 .7</intensity>
 	</light>
+	
 <surface type="Box">
 <minpt>-200 -90 -200</minpt>
 <maxpt>-180 -89.95 -180</maxpt>
