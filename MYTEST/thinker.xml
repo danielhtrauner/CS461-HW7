@@ -1,58 +1,111 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!--  Bunny-mesh (500 polygons, with normals)
+<!--	Bunny-mesh (500 polygons, with normals)
  -->
 <scene>
 	<samples>1</samples>
-	  <camera>
-	    <viewPoint>6.6 4 10</viewPoint>
-	    <viewDir>-6.4 -4 -8</viewDir>
-	    <projNormal>6.4 4 8</projNormal>
-	    <viewUp>0 1 0</viewUp>
-	    <projDistance>10</projDistance>
-	    <viewWidth>6</viewWidth>
-	    <viewHeight>4</viewHeight>
-	  </camera>
-	  <image>
-	    192 108
-	  </image>
+		<camera>
+			<viewPoint>0 50 500</viewPoint>
+			<viewDir>0 -1 -10</viewDir>
+			<projNormal>0 1 10</projNormal>
+			<viewUp>0 1 0</viewUp>
+			<projDistance>15</projDistance>
+			<viewWidth>16</viewWidth>
+			<viewHeight>9</viewHeight>
+		</camera>
+		<image>
+			960 540
+		</image>
 	
-	  <shader name="redglazed" type="Glazed">
-	    <refractiveIndex>1.5</refractiveIndex>
-	    <substrate type="Lambertian">
-	      <diffuseColor>.9 0 0</diffuseColor>
-	    </substrate>
-	  </shader>
-	  
-	  <shader name="whiteglazed" type="Glazed">
-	    <refractiveIndex>25</refractiveIndex>
-	     <substrate type="Lambertian">
-	       <diffuseColor>1 1 1</diffuseColor>
-	    </substrate>
-	  </shader>
-	  
-	  <shader name="gray" type="Lambertian">
-	    <diffuseColor>0.6 0.6 0.6</diffuseColor>
-	  </shader>
-	  
-	  <shader name="green" type="Lambertian">
-	    <diffuseColor>0.2 1 0.2</diffuseColor>
-	  </shader>
+		<shader name="redglazed" type="Glazed">
+			<refractiveIndex>1.5</refractiveIndex>
+			<substrate type="Lambertian">
+				<diffuseColor>.9 0 0</diffuseColor>
+			</substrate>
+		</shader>
+		
+		<shader name="whiteglazed" type="Glazed">
+			<refractiveIndex>25</refractiveIndex>
+			 <substrate type="Lambertian">
+				 <diffuseColor>1 1 1</diffuseColor>
+			</substrate>
+		</shader>
+		<shader name="whitewall" type="Glazed">
+		    <refractiveIndex>2</refractiveIndex>
+			<substrate type="Phong">
+				<diffuseColor>.4 .4 .4</diffuseColor>
+				<specularColor>1 1 1</specularColor>
+				<exponent>50</exponent>
+			</substrate>
+		</shader>
+		<shader name="white" type="Lambertian">
+			<diffuseColor>.7 .7 .7</diffuseColor>
+		</shader>
+		
+		<shader name="green" type="Lambertian">
+			<diffuseColor>0.2 1 0.2</diffuseColor>
+		</shader>
+	<!-- Thinker Guy -->
+<!--   	<surface type="Group">
+		<rotate>80 -110 190</rotate>	
+		<surface type="Mesh">
+			<shader ref="redglazed"/>
+			<data>thinker.msh</data>
+		</surface>
+	</surface> -->
+   	<surface type="Group">
+   	    <rotate>0 180 0</rotate>
+		<surface type="Mesh">
+			<shader ref="redglazed"/>
+			<data>monalisa.msh</data>
+		</surface>
+	</surface>
+	<!-- Floor -->
+	<surface type="Box">
+		<minpt>-200 -100 -200</minpt>
+		<maxpt>200 -90 200</maxpt>
+		<shader ref="whitewall"/>
+	</surface>
+	<!-- Left Wall -->
+	<surface type="Box">
+	    <minpt>-210 -100 -200</minpt>
+	    <maxpt>-200 200 200</maxpt>
+	    <shader ref="white"/>
+	</surface>
+	<!-- Back Wall -->
+	<surface type="Box">
+	    <minpt>-200 -100 -210</minpt>
+	    <maxpt>200 200 -200</maxpt>
+	    <shader ref="white"/>
+	</surface>
+	<!-- Right Wall -->
+	<surface type="Box">
+	    <minpt>200 -100 -200</minpt>
+	    <maxpt>210 200 200</maxpt>
+	    <shader ref="white"/>
+	</surface>	
+<!-- 	<surface type="Sphere">
+		<shader ref="green" />
+		<radius>50</radius>
+		<center>0 0 0</center>
+	</surface>	
+ -->	<!-- Lights -->
+	<light>
+		<position>200 200 200</position>  
+		<intensity>.7 .7 .7</intensity>  
+	</light>
+	<light>
+		<position>-200 200 200</position>  
+		<intensity>.7 .7 .7</intensity>  
+	</light>
+	<light>
+		<position>0 60 600</position>
+		<intensity>.7 .7 .7</intensity>
+	</light>
 	
 	
-	  <surface type="Mesh">
-	    <shader ref="redglazed"/>
-	    <data>thinker.msh</data>
-	  </surface>
+
 	
-	  <surface type="Box">
-	  	<minpt>-5 -1 -20</minpt>
-	  	<maxpt>10 -0.9 10</maxpt>
-	  	<shader ref="whiteglazed"/>
-	  </surface>
-	  
-	  <light>
-	  	<position>3 10 5</position>
-	  	<intensity>.8 .8 .8</intensity>
-	  </light>
+	
+	
 </scene>
 
