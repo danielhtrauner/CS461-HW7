@@ -37,6 +37,14 @@
 				<exponent>50</exponent>
 			</substrate>
 		</shader>
+		<shader name="blackfloor" type="Glazed">
+		    <refractiveIndex>2</refractiveIndex>
+			<substrate type="Phong">
+				<diffuseColor>.1 .1 .1</diffuseColor>
+				<specularColor>1 1 1</specularColor>
+				<exponent>50</exponent>
+			</substrate>
+		</shader>
 		<shader name="white" type="Lambertian">
 			<diffuseColor>.7 .7 .7</diffuseColor>
 		</shader>
@@ -52,13 +60,7 @@
 			<data>thinker.msh</data>
 		</surface>
 	</surface> -->
-   	<surface type="Group">
-   	    <rotate>0 180 0</rotate>
-		<surface type="Mesh">
-			<shader ref="redglazed"/>
-			<data>monalisa.msh</data>
-		</surface>
-	</surface>
+
 	<!-- Floor -->
 	<surface type="Box">
 		<minpt>-200 -100 -200</minpt>
@@ -102,9 +104,1218 @@
 		<intensity>.7 .7 .7</intensity>
 	</light>
 	
-	
+<!-- FLOOORR BABY -->	
+<!-- X Row -->
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-200 -90 -200</minpt>
+<maxpt>-180 -89.95 -180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-200 -90 -160</minpt>
+<maxpt>-180 -89.95 -140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-200 -90 -120</minpt>
+<maxpt>-180 -89.95 -100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-200 -90 -80</minpt>
+<maxpt>-180 -89.95 -60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-200 -90 -40</minpt>
+<maxpt>-180 -89.95 -20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-200 -90 0</minpt>
+<maxpt>-180 -89.95 20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-200 -90 40</minpt>
+<maxpt>-180 -89.95 60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-200 -90 80</minpt>
+<maxpt>-180 -89.95 100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-200 -90 120</minpt>
+<maxpt>-180 -89.95 140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-200 -90 160</minpt>
+<maxpt>-180 -89.95 180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-180 -90 -180</minpt>
+<maxpt>-160 -89.95 -160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-180 -90 -140</minpt>
+<maxpt>-160 -89.95 -120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-180 -90 -100</minpt>
+<maxpt>-160 -89.95 -80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-180 -90 -60</minpt>
+<maxpt>-160 -89.95 -40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-180 -90 -20</minpt>
+<maxpt>-160 -89.95 0</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-180 -90 20</minpt>
+<maxpt>-160 -89.95 40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-180 -90 60</minpt>
+<maxpt>-160 -89.95 80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-180 -90 100</minpt>
+<maxpt>-160 -89.95 120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-180 -90 140</minpt>
+<maxpt>-160 -89.95 160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-180 -90 180</minpt>
+<maxpt>-160 -89.95 200</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- X Row -->
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-160 -90 -200</minpt>
+<maxpt>-140 -89.95 -180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-160 -90 -160</minpt>
+<maxpt>-140 -89.95 -140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-160 -90 -120</minpt>
+<maxpt>-140 -89.95 -100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-160 -90 -80</minpt>
+<maxpt>-140 -89.95 -60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-160 -90 -40</minpt>
+<maxpt>-140 -89.95 -20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-160 -90 0</minpt>
+<maxpt>-140 -89.95 20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-160 -90 40</minpt>
+<maxpt>-140 -89.95 60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-160 -90 80</minpt>
+<maxpt>-140 -89.95 100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-160 -90 120</minpt>
+<maxpt>-140 -89.95 140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-160 -90 160</minpt>
+<maxpt>-140 -89.95 180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-140 -90 -180</minpt>
+<maxpt>-120 -89.95 -160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-140 -90 -140</minpt>
+<maxpt>-120 -89.95 -120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-140 -90 -100</minpt>
+<maxpt>-120 -89.95 -80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-140 -90 -60</minpt>
+<maxpt>-120 -89.95 -40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-140 -90 -20</minpt>
+<maxpt>-120 -89.95 0</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-140 -90 20</minpt>
+<maxpt>-120 -89.95 40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-140 -90 60</minpt>
+<maxpt>-120 -89.95 80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-140 -90 100</minpt>
+<maxpt>-120 -89.95 120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-140 -90 140</minpt>
+<maxpt>-120 -89.95 160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-140 -90 180</minpt>
+<maxpt>-120 -89.95 200</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- X Row -->
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-120 -90 -200</minpt>
+<maxpt>-100 -89.95 -180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-120 -90 -160</minpt>
+<maxpt>-100 -89.95 -140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-120 -90 -120</minpt>
+<maxpt>-100 -89.95 -100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-120 -90 -80</minpt>
+<maxpt>-100 -89.95 -60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-120 -90 -40</minpt>
+<maxpt>-100 -89.95 -20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-120 -90 0</minpt>
+<maxpt>-100 -89.95 20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-120 -90 40</minpt>
+<maxpt>-100 -89.95 60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-120 -90 80</minpt>
+<maxpt>-100 -89.95 100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-120 -90 120</minpt>
+<maxpt>-100 -89.95 140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-120 -90 160</minpt>
+<maxpt>-100 -89.95 180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-100 -90 -180</minpt>
+<maxpt>-80 -89.95 -160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-100 -90 -140</minpt>
+<maxpt>-80 -89.95 -120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-100 -90 -100</minpt>
+<maxpt>-80 -89.95 -80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-100 -90 -60</minpt>
+<maxpt>-80 -89.95 -40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-100 -90 -20</minpt>
+<maxpt>-80 -89.95 0</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-100 -90 20</minpt>
+<maxpt>-80 -89.95 40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-100 -90 60</minpt>
+<maxpt>-80 -89.95 80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-100 -90 100</minpt>
+<maxpt>-80 -89.95 120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-100 -90 140</minpt>
+<maxpt>-80 -89.95 160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-100 -90 180</minpt>
+<maxpt>-80 -89.95 200</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- X Row -->
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-80 -90 -200</minpt>
+<maxpt>-60 -89.95 -180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-80 -90 -160</minpt>
+<maxpt>-60 -89.95 -140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-80 -90 -120</minpt>
+<maxpt>-60 -89.95 -100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-80 -90 -80</minpt>
+<maxpt>-60 -89.95 -60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-80 -90 -40</minpt>
+<maxpt>-60 -89.95 -20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-80 -90 0</minpt>
+<maxpt>-60 -89.95 20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-80 -90 40</minpt>
+<maxpt>-60 -89.95 60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-80 -90 80</minpt>
+<maxpt>-60 -89.95 100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-80 -90 120</minpt>
+<maxpt>-60 -89.95 140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-80 -90 160</minpt>
+<maxpt>-60 -89.95 180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-60 -90 -180</minpt>
+<maxpt>-40 -89.95 -160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-60 -90 -140</minpt>
+<maxpt>-40 -89.95 -120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-60 -90 -100</minpt>
+<maxpt>-40 -89.95 -80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-60 -90 -60</minpt>
+<maxpt>-40 -89.95 -40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-60 -90 -20</minpt>
+<maxpt>-40 -89.95 0</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-60 -90 20</minpt>
+<maxpt>-40 -89.95 40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-60 -90 60</minpt>
+<maxpt>-40 -89.95 80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-60 -90 100</minpt>
+<maxpt>-40 -89.95 120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-60 -90 140</minpt>
+<maxpt>-40 -89.95 160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-60 -90 180</minpt>
+<maxpt>-40 -89.95 200</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- X Row -->
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-40 -90 -200</minpt>
+<maxpt>-20 -89.95 -180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-40 -90 -160</minpt>
+<maxpt>-20 -89.95 -140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-40 -90 -120</minpt>
+<maxpt>-20 -89.95 -100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-40 -90 -80</minpt>
+<maxpt>-20 -89.95 -60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-40 -90 -40</minpt>
+<maxpt>-20 -89.95 -20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-40 -90 0</minpt>
+<maxpt>-20 -89.95 20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-40 -90 40</minpt>
+<maxpt>-20 -89.95 60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-40 -90 80</minpt>
+<maxpt>-20 -89.95 100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-40 -90 120</minpt>
+<maxpt>-20 -89.95 140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-40 -90 160</minpt>
+<maxpt>-20 -89.95 180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-20 -90 -180</minpt>
+<maxpt>0 -89.95 -160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-20 -90 -140</minpt>
+<maxpt>0 -89.95 -120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-20 -90 -100</minpt>
+<maxpt>0 -89.95 -80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-20 -90 -60</minpt>
+<maxpt>0 -89.95 -40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-20 -90 -20</minpt>
+<maxpt>0 -89.95 0</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-20 -90 20</minpt>
+<maxpt>0 -89.95 40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-20 -90 60</minpt>
+<maxpt>0 -89.95 80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-20 -90 100</minpt>
+<maxpt>0 -89.95 120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-20 -90 140</minpt>
+<maxpt>0 -89.95 160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>-20 -90 180</minpt>
+<maxpt>0 -89.95 200</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- X Row -->
+<!-- Z Row -->
+<surface type="Box">
+<minpt>0 -90 -200</minpt>
+<maxpt>20 -89.95 -180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>0 -90 -160</minpt>
+<maxpt>20 -89.95 -140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>0 -90 -120</minpt>
+<maxpt>20 -89.95 -100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>0 -90 -80</minpt>
+<maxpt>20 -89.95 -60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>0 -90 -40</minpt>
+<maxpt>20 -89.95 -20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>0 -90 0</minpt>
+<maxpt>20 -89.95 20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>0 -90 40</minpt>
+<maxpt>20 -89.95 60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>0 -90 80</minpt>
+<maxpt>20 -89.95 100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>0 -90 120</minpt>
+<maxpt>20 -89.95 140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>0 -90 160</minpt>
+<maxpt>20 -89.95 180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>20 -90 -180</minpt>
+<maxpt>40 -89.95 -160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>20 -90 -140</minpt>
+<maxpt>40 -89.95 -120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>20 -90 -100</minpt>
+<maxpt>40 -89.95 -80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>20 -90 -60</minpt>
+<maxpt>40 -89.95 -40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>20 -90 -20</minpt>
+<maxpt>40 -89.95 0</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>20 -90 20</minpt>
+<maxpt>40 -89.95 40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>20 -90 60</minpt>
+<maxpt>40 -89.95 80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>20 -90 100</minpt>
+<maxpt>40 -89.95 120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>20 -90 140</minpt>
+<maxpt>40 -89.95 160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>20 -90 180</minpt>
+<maxpt>40 -89.95 200</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- X Row -->
+<!-- Z Row -->
+<surface type="Box">
+<minpt>40 -90 -200</minpt>
+<maxpt>60 -89.95 -180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>40 -90 -160</minpt>
+<maxpt>60 -89.95 -140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>40 -90 -120</minpt>
+<maxpt>60 -89.95 -100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>40 -90 -80</minpt>
+<maxpt>60 -89.95 -60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>40 -90 -40</minpt>
+<maxpt>60 -89.95 -20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>40 -90 0</minpt>
+<maxpt>60 -89.95 20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>40 -90 40</minpt>
+<maxpt>60 -89.95 60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>40 -90 80</minpt>
+<maxpt>60 -89.95 100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>40 -90 120</minpt>
+<maxpt>60 -89.95 140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>40 -90 160</minpt>
+<maxpt>60 -89.95 180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>60 -90 -180</minpt>
+<maxpt>80 -89.95 -160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>60 -90 -140</minpt>
+<maxpt>80 -89.95 -120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>60 -90 -100</minpt>
+<maxpt>80 -89.95 -80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>60 -90 -60</minpt>
+<maxpt>80 -89.95 -40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>60 -90 -20</minpt>
+<maxpt>80 -89.95 0</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>60 -90 20</minpt>
+<maxpt>80 -89.95 40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>60 -90 60</minpt>
+<maxpt>80 -89.95 80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>60 -90 100</minpt>
+<maxpt>80 -89.95 120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>60 -90 140</minpt>
+<maxpt>80 -89.95 160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>60 -90 180</minpt>
+<maxpt>80 -89.95 200</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- X Row -->
+<!-- Z Row -->
+<surface type="Box">
+<minpt>80 -90 -200</minpt>
+<maxpt>100 -89.95 -180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>80 -90 -160</minpt>
+<maxpt>100 -89.95 -140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>80 -90 -120</minpt>
+<maxpt>100 -89.95 -100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>80 -90 -80</minpt>
+<maxpt>100 -89.95 -60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>80 -90 -40</minpt>
+<maxpt>100 -89.95 -20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>80 -90 0</minpt>
+<maxpt>100 -89.95 20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>80 -90 40</minpt>
+<maxpt>100 -89.95 60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>80 -90 80</minpt>
+<maxpt>100 -89.95 100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>80 -90 120</minpt>
+<maxpt>100 -89.95 140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>80 -90 160</minpt>
+<maxpt>100 -89.95 180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>100 -90 -180</minpt>
+<maxpt>120 -89.95 -160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>100 -90 -140</minpt>
+<maxpt>120 -89.95 -120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>100 -90 -100</minpt>
+<maxpt>120 -89.95 -80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>100 -90 -60</minpt>
+<maxpt>120 -89.95 -40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>100 -90 -20</minpt>
+<maxpt>120 -89.95 0</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>100 -90 20</minpt>
+<maxpt>120 -89.95 40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>100 -90 60</minpt>
+<maxpt>120 -89.95 80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>100 -90 100</minpt>
+<maxpt>120 -89.95 120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>100 -90 140</minpt>
+<maxpt>120 -89.95 160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>100 -90 180</minpt>
+<maxpt>120 -89.95 200</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- X Row -->
+<!-- Z Row -->
+<surface type="Box">
+<minpt>120 -90 -200</minpt>
+<maxpt>140 -89.95 -180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>120 -90 -160</minpt>
+<maxpt>140 -89.95 -140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>120 -90 -120</minpt>
+<maxpt>140 -89.95 -100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>120 -90 -80</minpt>
+<maxpt>140 -89.95 -60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>120 -90 -40</minpt>
+<maxpt>140 -89.95 -20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>120 -90 0</minpt>
+<maxpt>140 -89.95 20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>120 -90 40</minpt>
+<maxpt>140 -89.95 60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>120 -90 80</minpt>
+<maxpt>140 -89.95 100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>120 -90 120</minpt>
+<maxpt>140 -89.95 140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>120 -90 160</minpt>
+<maxpt>140 -89.95 180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>140 -90 -180</minpt>
+<maxpt>160 -89.95 -160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>140 -90 -140</minpt>
+<maxpt>160 -89.95 -120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>140 -90 -100</minpt>
+<maxpt>160 -89.95 -80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>140 -90 -60</minpt>
+<maxpt>160 -89.95 -40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>140 -90 -20</minpt>
+<maxpt>160 -89.95 0</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>140 -90 20</minpt>
+<maxpt>160 -89.95 40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>140 -90 60</minpt>
+<maxpt>160 -89.95 80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>140 -90 100</minpt>
+<maxpt>160 -89.95 120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>140 -90 140</minpt>
+<maxpt>160 -89.95 160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>140 -90 180</minpt>
+<maxpt>160 -89.95 200</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- X Row -->
+<!-- Z Row -->
+<surface type="Box">
+<minpt>160 -90 -200</minpt>
+<maxpt>180 -89.95 -180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>160 -90 -160</minpt>
+<maxpt>180 -89.95 -140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>160 -90 -120</minpt>
+<maxpt>180 -89.95 -100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>160 -90 -80</minpt>
+<maxpt>180 -89.95 -60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>160 -90 -40</minpt>
+<maxpt>180 -89.95 -20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>160 -90 0</minpt>
+<maxpt>180 -89.95 20</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>160 -90 40</minpt>
+<maxpt>180 -89.95 60</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>160 -90 80</minpt>
+<maxpt>180 -89.95 100</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>160 -90 120</minpt>
+<maxpt>180 -89.95 140</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>160 -90 160</minpt>
+<maxpt>180 -89.95 180</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>180 -90 -180</minpt>
+<maxpt>200 -89.95 -160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>180 -90 -140</minpt>
+<maxpt>200 -89.95 -120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>180 -90 -100</minpt>
+<maxpt>200 -89.95 -80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>180 -90 -60</minpt>
+<maxpt>200 -89.95 -40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>180 -90 -20</minpt>
+<maxpt>200 -89.95 0</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>180 -90 20</minpt>
+<maxpt>200 -89.95 40</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>180 -90 60</minpt>
+<maxpt>200 -89.95 80</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>180 -90 100</minpt>
+<maxpt>200 -89.95 120</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>180 -90 140</minpt>
+<maxpt>200 -89.95 160</maxpt>
+<shader ref="blackfloor"/>
+</surface>
+<!-- Z Row -->
+<surface type="Box">
+<minpt>180 -90 180</minpt>
+<maxpt>200 -89.95 200</maxpt>
+<shader ref="blackfloor"/>
+</surface>
 
-	
 	
 	
 </scene>
