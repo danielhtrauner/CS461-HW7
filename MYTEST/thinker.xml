@@ -60,13 +60,7 @@
 			<shader ref="redglazed"/>
 			<data>thinker.msh</data>
 		</surface>
-<<<<<<< HEAD
-	</surface> -->
 
-=======
-	</surface>
-	
->>>>>>> 6b0c37a0d213864f2b7e2184e7a9f4d9ae929742
 	<!-- Floor -->
 	<surface type="Box">
 		<minpt>-200 -100 -200</minpt>
